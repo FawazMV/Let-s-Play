@@ -1,7 +1,7 @@
 import React from "react";
 import  ReactDOM  from "react-dom/client";
-import Navbar from "./Components/Home/Navbar"
-import Body from './Components/Home/Body'
+import Navbar from "./Components/Layout/Navbar"
+import Body from './Components/Home/LandinPage'
 const Applayout = ()=>{
     return(
         <>
