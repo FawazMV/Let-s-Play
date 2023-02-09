@@ -1,16 +1,38 @@
 import React from "react";
-import  ReactDOM  from "react-dom/client";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
 import Navbar from "./Components/Layout/Navbar"
 import Body from './Components/Home/LandinPage'
-const Applayout = ()=>{
-    return(
-        <>
-        <Navbar/>
-        <Body/>
+import Turf_Landing from "./Components/Turf_Management/Landin _Page/Turf_Landing";
+const Applayout = () => {
+    return (
+        <> 
+            <Navbar />
+            <Outlet />
+
+
         </>
     )
 }
 
+const appRouter = createBrowserRouter([
+    {
+        path: '/',
+        element: <Applayout />,
+        children: [
+            {
+                path: '/',
+                element: <Body />
+            },
+            {
+                path: '/register-turf',
+                element: <Turf_Landing />
+            }
+        ]
+    }
+
+])
+
 const root = ReactDOM.createRoot(document.getElementById("root"))
 
-root.render(<Applayout/>)
+root.render(<RouterProvider router={appRouter} />)

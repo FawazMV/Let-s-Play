@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Axiosuser as axios } from "../../API/Axiosinstance";
+import { OTP, Resend } from "../../API/Auth";
 
-const OtpForm = () => {
+const OtpForm = ({ updateForm, formData }) => {
     const [otp, setOTP] = useState(["", "", "", ""]);
+    const [err, setErr] = useState('')
+    const [resend, setResend] = useState(true);
 
     const onDigitChange = (event, index) => {
         const updatedOTP = [...otp];
@@ -17,16 +20,10 @@ const OtpForm = () => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         const joinedOTP = otp.join("");
-        console.log(`OTP entered: ${joinedOTP}`);
-        axios.post('/otp').then(data => {
-             setOtpform(false)
-
-        })
+        formData.otp = joinedOTP
+        OTP(formData).then(() => updateForm())
+            .catch((err) => setErr(err))
         setOTP(['', '', '', ''])
-
-
-
-        // perform OTP verification here
     };
     return (
         <div className="bg-white mb-3 pb-5 px-11 rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
@@ -51,6 +48,12 @@ const OtpForm = () => {
                 </div>
 
             </form>
+            {resend ? <div className="text-blue-600 my-2 flex w-full justify-evenly" onClick={() => {
+                Resend(formData.mobile).then(() => setResend(false))
+                .catch((err) => console.log(err))
+            }}> <p>Resend OTP</p></div> : ''}
+            <div className="text-red-500 flex w-full justify-evenly"> <p>{err}</p></div>
+
         </div>
     )
 }

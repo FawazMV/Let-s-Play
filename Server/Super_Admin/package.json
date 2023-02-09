@@ -1,0 +1,21 @@
+{
+  "name": "super_admin",
+  "version": "1.0.0",
+  "description": "This is for super admin who can see the collection report and users and manage the turfs ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "Muhammed Fawaz MV",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

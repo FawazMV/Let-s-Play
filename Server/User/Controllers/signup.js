@@ -37,3 +37,8 @@ export const otpCheck = (req, res, next) => {
         next(error)
     }
 }
+
+export const otpResend=(req,res,next)=>{
+    otpcallin(req.body.mobile)
+    return res.status(200).json({ message: `OTP send to ${req.body.mobile}` });
+}
