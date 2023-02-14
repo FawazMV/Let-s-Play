@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-import mongoose from 'mongoose'
 const turfSchema = new mongoose.Schema
     (
         {
-            turfname: {
+            courtName: {
                 type: String,
                 trim: true
             },
@@ -26,52 +25,46 @@ const turfSchema = new mongoose.Schema
                 type: Array,
 
             },
-            Location: {
+            location: {
                 type: String,
                 trim: true,
                 required: true
             },
-            LocationDescription: {
+            location_Details: {
                 type: String,
                 trim: true,
                 required: true
             },
-            District: {
+            distric: {
                 type: String,
                 trim: true,
                 required: true
             },
-            State: {
+            state: {
                 type: String,
                 trim: true,
-                required: true
-            },
-            EnquiryNo: {
-                type: Number,
                 required: true
             },
             WorkingTime: {
                 startinTime: {
                     type: String,
-                    required: true
                 },
                 endingTime: {
                     type: String,
-                    required: true
                 }
             },
             Holiday: {
                 type: String,
                 default: 'Sunday'
             },
-            SportsType: {
+            event: {
                 type: String,
                 trim: true,
                 required: true
             },
             Price: {
                 type: Number,
-                required: true
+                default: '1400'
             }
 
         },

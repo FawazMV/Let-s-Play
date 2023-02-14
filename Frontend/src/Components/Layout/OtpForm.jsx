@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Axiosuser as axios } from "../../API/Axiosinstance";
-import { OTP, Resend } from "../../API/Auth";
+import { OTP, Resend } from "../../API/UserAuth";
 
 const OtpForm = ({ updateForm, formData }) => {
     const [otp, setOTP] = useState(["", "", "", ""]);

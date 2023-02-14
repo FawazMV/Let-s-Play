@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import OtpForm from "./OtpForm";
-import { Signup, Login } from '../../API/Auth'
-import ValidateForm from "../../Helpers/ValidateForm";
+import { Signup, Login } from '../../API/UserAuth'
+import { ValidateSignupForm } from "../../Helpers/ValidateForm";
 const SignupModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
@@ -16,7 +16,7 @@ const SignupModal = () => {
         });
     };
     const validateForm = () => {
-        const newErrors = ValidateForm(formData,isLogin)
+        const newErrors = ValidateSignupForm(formData, isLogin)
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };

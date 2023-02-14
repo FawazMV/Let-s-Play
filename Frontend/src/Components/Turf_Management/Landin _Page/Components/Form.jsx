@@ -1,131 +1,85 @@
 import React, { useState } from "react";
+import { ValidateTurfRegistration } from "../../../../Helpers/ValidateForm";
+import { register } from '../../../../API/TurfAuth'
+import ContactInfo from "./ContactInfo";
+import { TurfRegistrationDiv as FormDiv, initialState, errorState } from "../../../constats";
 
-const initialState = {
-    name: "",
-    email: "",
-    message: "",
-    nameError: "",
-    emailError: "",
-    messageError: "",
-};
+
+
 
 const Form = () => {
+
     const [formData, setFormData] = useState(initialState);
+    const [errors, setErrors] = useState({});
+    const [registerError, setRegisterError] = useState('')
+    const [imagess, setImages] = useState([]);
 
     const handleChange = (event) => {
         setFormData({
             ...formData,
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value
         });
     };
 
     const validate = () => {
-        let nameError = "";
-        let emailError = "";
-        let messageError = "";
-
-        if (!formData.name) {
-            nameError = "Name is required";
-        }
-
-        if (!formData.email.includes("@")) {
-            emailError = "Invalid email";
-        }
-
-        if (!formData.message) {
-            messageError = "Message is required";
-        }
-
-        if (nameError || emailError || messageError) {
-            setFormData({ ...formData, nameError, emailError, messageError });
-            return false;
-        }
-
+        const err = ValidateTurfRegistration(formData, imagess)
+        console.log(imagess.length)
+        setErrors(err);
+        if (Object.keys(err).length) return false;
         return true;
-    };
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const isValid = validate();
-        if (isValid) {
-            console.log(formData);
-            setFormData(initialState);
+
+
+
+
+        if (validate()) {
+            const form = new FormData(event.target);
+            imagess.forEach((image) => {
+                form.append('images', image);
+            });
+            console.log(form)
+            register(form).then(() => setFormData(initialState))
+                .catch(error => setRegisterError(error))
         }
     };
 
     return (
-        <div className="flex">
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label
-                            className="block text-gray-700 font-bold mb-2"
-                            htmlFor="name"
-                        >
-                            Name
-                        </label>
-                        <input
-                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${formData.nameError ? "border-red-500" : ""
-                                }`}
-                            id="name"
-                            type="text"
-                            name="name"
-                            placeholder="Enter your name"
-                            value={formData.name}
-                            onChange={handleChange}
-                        />
-                        <p className="text-red-500 text-xs italic">{formData.nameError}</p>
+        <div className="md:px-32 lg:py-20 sm:px-20 px-5 py-10 ">
+            <div className="grid grid-cols-12 gap-4">
+                <div className="lg:col-span-8 col-span-12">
+                    <div className="md:px-20 xl:px-36 px-10 py-10">
+                        <h1 className="font-bold text-3xl mb-7">PATNERSHIP FORM</h1>
+                        <form className="w-full" onClick={() => setErrors(errorState)} onSubmit={handleSubmit}>
+                            {
+                                FormDiv.map(val => (
+                                    <div className="mb-4" key={`div${val.id}`} >
+                                        <label className="block text-gray-600 font-semibold mb-2" htmlFor={`${val.id}`}>{val.label}</label>
+                                        <input className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors[val.id + 'Error'] ? "border-red-500" : ""}`}
+                                            id={`${val.id}`} type="text" name={`${val.id}`} placeholder={`${val.placeholder}`} value={formData[val.id]} onChange={handleChange} />
+                                        <p className="text-red-500 text-xs italic">{errors[val.id + 'Error']}</p>
+                                    </div>
+                                ))
+                            }
+                            <div className="mb-4" key='img' >
+                                <label className="block text-gray-600 font-semibold mb-2" htmlFor='img'>Turf Images</label>
+                                <input className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.imgError ? "border-red-500" : ""}`}
+                                    id='img' type="file" name='images' placeholder='Add Turf Images' multiple onChange={(e) => {
+                                        setImages(Array.from(event.target.files));
+                                    }} />
+                                <p className="text-red-500 text-xs italic">{errors.imgError}</p>
+                            </div>
+                            <div className="mb-3 text-red-600 text-sm text-center">{registerError}</div>
+                            <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Submit</button>
+                        </form>
                     </div>
-                    <div className="mb-4">
-                        <label
-                            className="block text-gray-700 font-bold mb-2"
-                            htmlFor="email"
-                        >
-                            Email
-                        </label>
-                        <input
-                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${formData.emailError ? "border-red-500" : ""
-                                }`}
-                            id="email"
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            value={formData.email}
-                            onChange={handleChange}
-                        />
-                        <p className="text-red-500 text-xs italic">{formData.emailError}</p>
-                    </div>
-                    <div className="mb-4">
-                        <label
-                            className="block text-gray-700 font-bold mb-2"
-                            htmlFor="message"
-                        >
-                            Message
-                        </label>
-                        <textarea
-                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${formData.messageError ? "border-red-500" : ""
-                                }`}
-                            id="message"
-                            name="message"
-                            placeholder="Enter your message"
-                            value={formData.message}
-                            onChange={handleChange}
-                        />
-                        <p className="text-red-500 text-xs italic">{formData.messageError}</p>
-                    </div>
-                    <button
-                        className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit"
-                    >
-                        Submit
-                    </button>
-                </form>
+                </div>
+                <ContactInfo />
             </div>
-            <div>
-                <p>dsafjksdfj;lasjf;lkj</p>
-            </div>
-
         </div>
+
     );
 };
 

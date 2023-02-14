@@ -1,4 +1,8 @@
 import Axios from 'axios'
 export const Axiosuser = Axios.create({
-    baseURL:'http://localhost:7777'
+    baseURL: 'http://localhost:7777'
+})
+
+export const Axiosturf = Axios.create({
+    baseURL: 'http://localhost:8888'
 })
