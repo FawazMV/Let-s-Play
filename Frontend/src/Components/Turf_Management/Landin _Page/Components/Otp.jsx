@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { OTP } from "../../../../API/TurfAuth";
-import { Resend } from "../../../../API/UserAuth";
+// import { OTP, Resend } from "../../../../API/TurfAuth";
 
 const OtpForm = ({ number, modal, register }) => {
     const [otp, setOTP] = useState(["", "", "", ""]);
@@ -20,11 +19,10 @@ const OtpForm = ({ number, modal, register }) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         const joinedOTP = otp.join("");
-        OTP(joinedOTP).then(() => {
+        OTP(joinedOTP, number).then(() => {
             modal()
             register()
-        })
-            .catch((err) => setErr(err))
+        }).catch((err) => setErr(err))
         setOTP(['', '', '', ''])
     };
     return (

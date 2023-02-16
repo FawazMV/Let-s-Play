@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt'
+import { otpcallin, verifyOtp } from '../Helpers/Otp.js';
 import turfmodel from '../Models/turfModel.js';
 export const registration = async (req, res, next) => {
     try {
@@ -14,5 +15,29 @@ export const registration = async (req, res, next) => {
     }
     catch (err) {
         next(err)
-    } 
+    }
+}
+
+export const SendOtp = async (req, res, next) => {
+    try {
+        const { email, mobile } = req.body
+        if (await turfmodel.findOne({ email: email }))
+            return res.status(409).json({ message: "User already exists" })
+        otpcallin(mobile)
+    }
+    catch (err) {
+        next(err)
+    }
+}
+
+export const otpValidation = async (req, res, next) => {
+    const { otp, mobile } = req.body
+    const response = await verifyOtp(otp, mobile)
+    if (!response) return res.status(400).json({ message: "Invalid OTP" })
+    return res.status(200).json({ message: 'Validation Successful' })
+}
+
+export const otpResend = (req, res, next) => {
+    otpcallin(req.body.mobile)
+    return res.status(200).json({ message: `OTP send to ${req.body.mobile}` });
 }

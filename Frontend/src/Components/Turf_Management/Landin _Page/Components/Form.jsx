@@ -12,7 +12,7 @@ const Form = () => {
     const [errors, setErrors] = useState({});
     const [registerError, setRegisterError] = useState('')
     const [imagess, setImages] = useState([]);
-    const [otp, setOtp] = useState(true);
+    const [otp, setOtp] = useState(false);
 
     const handleChange = (event) => {
         setFormData({
