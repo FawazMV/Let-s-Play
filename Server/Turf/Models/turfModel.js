@@ -30,7 +30,7 @@ const turfSchema = new mongoose.Schema
                 trim: true,
                 required: true
             },
-            location_Details: {
+            loction_Details: {
                 type: String,
                 trim: true,
                 required: true
