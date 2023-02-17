@@ -4,7 +4,7 @@ import upload from './Helpers/multer.js'
 const router = express.Router()
 
 
-router.post('send-otp', SendOtp)
+router.post('/send-otp', SendOtp)
 
 router.post('/otp', otpValidation)
 

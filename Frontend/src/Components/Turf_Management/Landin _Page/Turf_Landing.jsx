@@ -7,7 +7,7 @@ const Turf_Landing = () => {
     return (
         <div className='pt-[72px]'>
             <Banner />
-            <Content />
+            <Content /> 
             <Form />
         </div >
 

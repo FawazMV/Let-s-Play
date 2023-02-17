@@ -1,11 +1,10 @@
 import { useState } from "react";
-// import { OTP, Resend } from "../../../../API/TurfAuth";
+import { OTP, Resend } from "../../../../API/TurfAuth";
 
-const OtpForm = ({ number, modal, register }) => {
+const OtpForm = ({ number, modal, Registration }) => {
     const [otp, setOTP] = useState(["", "", "", ""]);
     const [err, setErr] = useState('')
     const [resend, setResend] = useState(true);
-    console.log(number)
 
     const onDigitChange = (event, index) => {
         const updatedOTP = [...otp];
@@ -19,9 +18,10 @@ const OtpForm = ({ number, modal, register }) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         const joinedOTP = otp.join("");
-        OTP(joinedOTP, number).then(() => {
-            modal()
-            register()
+        OTP(joinedOTP, 9072879663).then(() => {
+            console.log(register)
+            Registration()
+            modal(false)
         }).catch((err) => setErr(err))
         setOTP(['', '', '', ''])
     };
@@ -29,9 +29,9 @@ const OtpForm = ({ number, modal, register }) => {
         <div className="bg-white mb-3 pb-5 px-10 rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div
                 className="flex justify-end pt-3 ml-3"
-                onClick={() => modal()}>
+                onClick={() => modal(false)}>
                 <span className="text-5xl font-extrabold cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-x" viewBox="0 0 16 6">
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                     </svg>
                 </span>
@@ -64,24 +64,14 @@ const OtpForm = ({ number, modal, register }) => {
 
 
 
-const Otp = ({ number, register }) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const updateOTPForm = () => setIsOpen(false)
-
-    return (
-        <>
-
-            {isOpen && (
-                <div className="fixed bottom-40 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center transition sm:justify-center">
-                    <div className="fixed inset-0 transition-opacity" onClick={() => document.getElementsByTagName("input")[0].focus()}>
-                        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                    </div>
-                    <OtpForm number={number} register={register} modal={updateOTPForm} />
-                </div >
-            )}
-        </>
-    )
-}
+const Otp = ({ number, Registration, modal }) => (
+    <div className="fixed bottom-40 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center transition sm:justify-center">
+        <div className="fixed inset-0 transition-opacity" onClick={() => document.getElementsByTagName("input")[0].focus()}>
+            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <OtpForm number={number} modal={modal} Registration={Registration} />
+    </div >
+)
 export default Otp
 
 

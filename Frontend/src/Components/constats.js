@@ -20,21 +20,6 @@ export const TurfRegistrationDiv = [
             placeholder: 'Enter your password',
         },
         {
-            label: 'Location',
-            id: 'location',
-            placeholder: 'Enter Court location',
-        },
-        {
-            label: 'District',
-            id: 'distric',
-            placeholder: 'Select district',
-        },
-        {
-            label: 'State',
-            id: 'state',
-            placeholder: 'Select State',
-        },
-        {
             label: 'Sports Event',
             id: 'event',
             placeholder: 'Select Sports Type',
@@ -52,5 +37,7 @@ export const initialState = {
 };
 export const errorState = {
     courtNameError: "", emailError: "", mobileError: "", passwordError: "",
-    locationError: '', districError: '', stateError: '', eventError: '', loction_DetailsError: "",
+    locationError: '', eventError: '', loction_DetailsError: "",
 }
+
+export const mapboxToken = "pk.eyJ1IjoiZmF3YXptdiIsImEiOiJjbGU3bjRicGYwNzJpM3ZuYmQ4Njd1MzdqIn0.T0K_SA2RGYeL9XzOdBXLYg"

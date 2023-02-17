@@ -24,6 +24,7 @@ export const SendOtp = async (req, res, next) => {
         if (await turfmodel.findOne({ email: email }))
             return res.status(409).json({ message: "User already exists" })
         otpcallin(mobile)
+        return res.status(200).json({ message: 'Otp send' })
     }
     catch (err) {
         next(err)
@@ -31,8 +32,9 @@ export const SendOtp = async (req, res, next) => {
 }
 
 export const otpValidation = async (req, res, next) => {
+    console.log('helo   ')
     const { otp, mobile } = req.body
-    const response = await verifyOtp(otp, mobile)
+    const response = await verifyOtp(mobile, otp).catch(err => next(err))
     if (!response) return res.status(400).json({ message: "Invalid OTP" })
     return res.status(200).json({ message: 'Validation Successful' })
 }
