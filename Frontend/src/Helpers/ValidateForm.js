@@ -22,11 +22,11 @@ export const ValidateSignupForm = (formData, isLogin) => {
 }
 
 
-export const ValidateTurfRegistration = (formData, img) => {
+export const ValidateTurfRegistration = (formData) => {
     const newErrors = {};
 
     if (!formData.courtName) {
-        newErrors.courtNameError = "courtName is required";
+        newErrors.courtNameError = "Court Name is required";
     }
 
     if (!formData.email) {
@@ -50,14 +50,6 @@ export const ValidateTurfRegistration = (formData, img) => {
         newErrors.passwordError = "Password is required";
     }
 
-    if (!formData.distric) {
-        newErrors.districError = "Distric is required";
-    }
-
-    if (!formData.state) {
-        newErrors.stateError = "State is required";
-    }
-
     if (!formData.event) {
         newErrors.eventError = "Event is required";
     }
@@ -65,8 +57,10 @@ export const ValidateTurfRegistration = (formData, img) => {
     if (!formData.loction_Details) {
         newErrors.loction_DetailsError = "Loction details is required";
     }
-    if (!img.length){
-        newErrors.imgError = 'Image is required';
+    if (!formData.images.length) {
+        newErrors.imagesError = 'Image is required';
     }
-        return newErrors;
+    console.log(newErrors);
+
+    return newErrors;
 }

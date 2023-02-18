@@ -4,6 +4,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
 import Navbar from "./Components/Layout/Navbar"
 import Body from './Components/Home/LandinPage'
 import Turf_Landing from "./Components/Turf_Management/Landin _Page/Turf_Landing";
+import Turf from "./Components/Home/Turfs";
 const Applayout = () => {
     return (
         <> 
@@ -27,6 +28,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/register-turf',
                 element: <Turf_Landing />
+            },
+            {
+                path: '/turfs',
+                element: <Turf />
             }
         ]
     }

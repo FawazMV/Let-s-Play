@@ -49,10 +49,13 @@ const SignupModal = () => {
                     <div className="fixed inset-0 transition-opacity" onClick={() => setIsOpen(false)}>
                         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
                     </div>
+
                     {!otpform ? <div className="bg-white px-6 rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+
                         <div className="flex justify-evenly">
                             <h2 className="text-2xl font-[Poppins] font-bold pt-5 pb-3 sm:p-6 sm:pb-4">{isLogin ? "Sign In" : "Sign Up"} </h2>
                         </div>
+
                         <form onSubmit={handleSubmit}>
                             <div className="bg-white px-4 pt-4 pb-4 sm:p-4 sm:pb-2">
                                 <div className={`mb-3 ${isLogin ? 'hidden' : ''}`}>
@@ -102,6 +105,8 @@ const SignupModal = () => {
                     </div> : <OtpForm formData={formData} updateForm={updateOTPForm} />}
                 </div >
             )}
+
+
         </>
     )
 }
