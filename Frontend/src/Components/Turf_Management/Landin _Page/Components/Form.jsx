@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ValidateTurfRegistration } from "../../../../Helpers/ValidateForm";
 import { EmailCheck, register } from '../../../../API/TurfAuth'
 import ContactInfo from "./ContactInfo";
@@ -7,8 +7,7 @@ import Otp from "./Otp";
 import LocationSearch from "./LocationSearch.jsx";
 
 
-const Form = () => {
-
+const Form = ({ div }) => {
     const [formData, setFormData] = useState(initialState);
     const [errors, setErrors] = useState({});
     const [registerError, setRegisterError] = useState('')
@@ -53,7 +52,7 @@ const Form = () => {
     return (
         <>
             {otp ? <Otp number={formData.mobile} modal={setOtp} Registration={Registration} /> : ''}
-            <div className="md:px-32 lg:py-20 sm:px-20 px-5 py-10 ">
+            <div ref={div} className="md:px-32 lg:py-20 sm:px-20 px-5 py-10 ">
                 <div className="grid grid-cols-12 gap-4">
                     <div className="lg:col-span-8 col-span-12">
                         <div className="md:px-20 xl:px-36 px-10 py-10">

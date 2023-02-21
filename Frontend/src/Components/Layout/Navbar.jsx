@@ -12,7 +12,7 @@ const Title = () => (
 const Navbar = () => {
   let Links = [
     { name: "HOME", link: "/" },
-    { name: "TURF BOOKING", link: "/" },
+    { name: "TURF BOOKING", link: "/turfs" },
     { name: "TURF REGISTRATION", link: "/register-turf" },
     { name: "BLOG'S", link: "/" },
     { name: "CONTACT", link: "/" },

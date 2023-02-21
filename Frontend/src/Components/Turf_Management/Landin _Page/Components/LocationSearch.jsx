@@ -29,7 +29,7 @@ const LocationSearch = ({ formLocation, err }) => {
     };
 
     return (
-        <div className="relativ" onClick={()=>setSearchResults([])}>
+        <div className="" onClick={()=>setSearchResults([])}>
             <div className="mb-4" >
                 <label className="block text-gray-600 font-semibold mb-2" htmlFor='location'>Location</label>
                 <input type="text" value={searchTerm} name="location" onChange={textChange} placeholder="Enter location name" id="location"

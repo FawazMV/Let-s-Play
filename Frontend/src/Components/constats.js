@@ -32,8 +32,8 @@ export const TurfRegistrationDiv = [
 ]
 
 export const initialState = {
-    courtName: "Campnou", email: "mvfawazmfz@gmail.com", mobile: "9072879663", password: '1234', location: "", distric: "", state: '', event: 'Football',
-    loction_Details: "Near calicut university", images: []
+    courtName: "", email: "", mobile: "", password: '', location: "", distric: "", state: '', event: '',
+    loction_Details: "", images: []
 };
 export const errorState = {
     courtNameError: "", emailError: "", mobileError: "", passwordError: "",
