@@ -1,4 +1,4 @@
- {/* <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100">
+ <!-- {/* <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100">
                             <div className="mb-8 text-center">
                                 <h1 className="my-3 text-4xl font-bold">{isLogin ? "Sign In" : "Sign Up"}</h1>
                                 <p className="text-sm text-gray-400">{isLogin ? "Sign In" : "Sign Up"} in to access your account</p>
@@ -28,4 +28,115 @@
                                     </p>
                                 </div>
                             </form>
-                        </div> */}
+                        </div> */} -->
+
+
+
+
+
+
+
+
+
+import { useState } from 'react';
+// import { HiEye } from 'react-icons/hi';
+
+const TurfsList = ({ turfs }) => {
+const [selectedTurf, setSelectedTurf] = useState(null);
+const [showTooltip, setShowTooltip] = useState(false);
+
+const handleTurfClick = (turf) => {
+setSelectedTurf(turf);
+};
+
+return (
+<div className="relative overflow-x-auto">
+  <table className="table w-full">
+    <thead className="bg-gray-800 text-white">
+      <tr>
+        <th className="py-4 px-6 text-left">Name</th>
+        <th className="py-4 px-6 text-left">Location</th>
+        <th className="py-4 px-6 text-left">Email</th>
+        <th className="py-4 px-6 text-left">Phone</th>
+        <th className="py-4 px-6 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody className="text-gray-700">
+      {turfs.map((turf) => (
+      <tr key={turf.id}>
+        <td className="py-4 px-6">{turf.name}</td>
+        <td className="py-4 px-6">{turf.location}</td>
+        <td className="py-4 px-6">{turf.email}</td>
+        <td className="py-4 px-6">{turf.phone}</td>
+        <td className="py-4 px-6">
+          <div className="">
+            <button className="text-blue-500 hover:text-blue-700" onClick={()=> {
+              handleTurfClick(turf)
+              setShowTooltip(!showTooltip)
+              }}
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" width='30' height='30' viewBox="0 0 24 24" fill=''>
+                <path d="M22.45,11.73C21.71,8.92,18.77,7,15.95,7a6.57,6.57,0,0,0-4.62,1.88l-1.44-1.44A9.06,9.06,0,0,1,15.95,5C19.39,5,22.32,7.84,22.45,11.73Zm-6.44,4.06c.39-.93,1.63-2.84,3.24-4.06C19.28,13.69,20,12.5,20,11.73c0-.77-.72-1.96-1.71-3.21-.6-.72-1.29-1.37-2-1.94l-1.43,1.43c.54.47,1,1,1.39,1.53C17.62,9.69,18,10.36,18,11.73c0,.6-.13,1.16-.33,1.68-.22.57-.44,1.05-.37,1.18s.36-.26.77-.65c.41-.38.9-.87,1.33-1.39l1.42,1.42C18.67,15.16,18,15.88,17.07,15.79Zm-7.53-3.3a3.26,3.26,0,0,1,3.26-3.26,3.26,3.26,0,0,1,3.26,3.26,3.26,3.26,0,0,1-3.26,3.26A3.26,3.26,0,0,1,9.54,12.49Zm0,4.59a1.33,1.33,0,1,0-1.33-1.33A1.33,1.33,0,0,0,9.54,17.08ZM3.55,11.73C3.68,7.84,6.61,5,10.05,5a9.06,9.06,0,0,1,6.43,2.59l-1.44,1.44A6.57,6.57,0,0,0,15.95,7c-2.82,0-5.76,1.92-6.5,4.73C6.61,12.57,3.68,14.41,3.55,11.73Z" />
+              </svg>
+            </button>
+            {showTooltip && selectedTurf && selectedTurf.id === turf.id && (
+            <div className="absolute bg-white shadow-md py-4 px-8 top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2">
+              <h2 className="text-lg font-bold mb-2">{selectedTurf.name}</h2>
+              <img src={selectedTurf.image} alt="Turf" className="mb-2" />
+              <p>{selectedTurf.location}</p>
+              <p>{selectedTurf.email}</p>
+              <p>{selectedTurf.phone}</p>
+            </div>
+            )}
+          </div>
+        </td>
+      </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+);
+};
+
+
+
+
+const turfs = [
+{
+id: 1,
+name: 'Turf A',
+location: '123 Main St, Anytown USA',
+email: 'turfA@example.com',
+phone: '123-456-7890',
+image: 'https://source.unsplash.com/random/800x600/?soccer',
+details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula felis eu ligula dictum vulputate. Donec fringilla ligula id nunc lacinia, ut euismod augue auctor. Nulla facilisi. In non varius velit. Nulla sed dolor ut mauris iaculis finibus. Cras nec augue mi. Donec vel magna ut ex vehicula aliquet. Praesent fringilla, justo ut iaculis scelerisque, augue nunc venenatis sem, in venenatis lacus velit quis odio. Sed tincidunt euismod diam, sit amet maximus augue tristique in. Donec ut velit libero. Duis iaculis augue a erat semper, ut vulputate massa varius. Etiam euismod lectus a laoreet vestibulum.'
+},
+{
+id: 2,
+name: 'Turf B',
+location: '456 Main St, Anytown USA',
+email: 'turfB@example.com',
+phone: '123-456-7890',
+image: 'https://source.unsplash.com/random/800x600/?football',
+details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula felis eu ligula dictum vulputate. Donec fringilla ligula id nunc lacinia, ut euismod augue auctor. Nulla facilisi. In non varius velit. Nulla sed dolor ut mauris iaculis finibus. Cras nec augue mi. Donec vel magna ut ex vehicula aliquet. Praesent fringilla, justo ut iaculis scelerisque, augue nunc venenatis sem, in venenatis lacus velit quis odio. Sed tincidunt euismod diam, sit amet maximus augue tristique in. Donec ut velit libero. Duis iaculis augue a erat semper, ut vulputate massa varius. Etiam euismod lectus a laoreet vestibulum.'
+},
+{
+id: 3,
+name: 'Turf C',
+location: '789 Main St, Anytown USA',
+email: 'turfC@example.com',
+phone: '123-456-7890',
+image: 'https://source.unsplash.com/random/800x600/?soccer',
+details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula felis eu ligula dictum vulputate. Donec fringilla ligula id nunc lacinia, ut euismod augue auctor. Nulla facilisi. In non varius velit. Nulla sed dolor ut mauris iaculis finibus. Cras nec augue mi. Donec vel magna ut ex vehicula aliquet. Praesent fringilla, justo ut iaculis scelerisque, augue nunc venenatis sem, in venenatis lacus velit quis odio. Sed tincidunt euismod diam, sit amet maximus augue tristique in. Donec ut velit libero
+}
+]
+
+const Turf_Management = () => {
+return (
+<div className="container mx-auto py-8">
+  <TurfsList turfs={turfs} />
+</div>
+);
+};
+
+export default Turf_Management;

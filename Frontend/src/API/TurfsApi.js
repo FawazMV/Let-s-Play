@@ -18,3 +18,4 @@ export const getLocationWiseTurfs = (distric) => {
             .catch((err) => reject(err));
     })
 }
+

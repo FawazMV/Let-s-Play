@@ -7,6 +7,3 @@ export const Axiosturf = Axios.create({
     baseURL: 'http://localhost:8888'
 })
 
-export const AxiosAdmin = Axios.create({
-    baseURL: 'http://localhost:7171'
-})

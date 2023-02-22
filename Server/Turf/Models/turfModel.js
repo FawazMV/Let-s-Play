@@ -65,7 +65,13 @@ const turfSchema = new mongoose.Schema
             Price: {
                 type: Number,
                 default: '1400'
+            },
+
+            request: {
+                type: Boolean,
+                default: false
             }
+
 
         },
         {

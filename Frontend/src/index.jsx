@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
 import Navbar from "./Components/Layout/Navbar"
@@ -9,6 +9,14 @@ import Dashboard from "./Components/Suepr_Admin/Dashboard";
 import Users from "./Components/Suepr_Admin/Users";
 import Turf_Management from "./Components/Suepr_Admin/Turf_Management";
 import AdminNavbar from "./Components/Suepr_Admin/Layout/Navbar";
+
+const Dashboard = lazy(() => import("./Components/Suepr_Admin/Dashboard"))
+const Users = lazy(() => import("./Components/Suepr_Admin/Users"))
+const Turf_Management = lazy(() => import("./Components/Suepr_Admin/Turf_Management"))
+
+
+
+
 const Applayout = () => {
     return (
         <>
@@ -51,15 +59,35 @@ const appRouter = createBrowserRouter([
         children: [
             {
                 path: '/admin',
-                element: <Dashboard />
+                element: (
+                    <Suspense >
+                        <Dashboard />
+                    </Suspense>
+                )
             },
             {
                 path: '/admin/users',
-                element: <Users />
+                element: (
+                    <Suspense >
+                        <Users />
+                    </Suspense>
+                )
             },
             {
                 path: '/admin/turfs',
-                element: <Turf_Management />
+                element: (
+                    <Suspense >
+                        <Turf_Management />
+                    </Suspense>
+                )
+            },
+            {
+                path: '/admin/turf-requests',
+                element: (
+                    <Suspense >
+                        <Turf_Management />
+                    </Suspense>
+                )
             }
         ]
     }

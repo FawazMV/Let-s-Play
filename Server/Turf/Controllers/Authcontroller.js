@@ -3,8 +3,6 @@ import { otpcallin, verifyOtp } from '../Helpers/Otp.js';
 import turfmodel from '../Models/turfModel.js';
 export const registration = async (req, res, next) => {
     try {
-        console.log(req.files)
-        console.log(req.file)
         const { courtName, email, mobile, password, location, distric, state, event, loction_Details } = req.body
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -12,7 +10,6 @@ export const registration = async (req, res, next) => {
             courtName, email, mobile, location, distric, state, event, loction_Details,
             password: hashedPassword, images: req.files
         });
-        console.log(newUser);
         newUser.save();
     }
     catch (err) {
@@ -34,7 +31,6 @@ export const SendOtp = async (req, res, next) => {
 }
 
 export const otpValidation = async (req, res, next) => {
-    console.log('helo   ')
     const { otp, mobile } = req.body
     const response = await verifyOtp(mobile, otp).catch(err => next(err))
     if (!response) return res.status(400).json({ message: "Invalid OTP" })
