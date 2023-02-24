@@ -11,7 +11,6 @@ const OtpForm = ({ updateForm, formData }) => {
         const updatedOTP = [...otp];
         updatedOTP[index] = event.target.value;
         setOTP(updatedOTP);
-
         if (event.target.value.length === 1 && index < 3) {
             document.getElementsByTagName("input")[index + 1].focus();
         }
@@ -26,7 +25,9 @@ const OtpForm = ({ updateForm, formData }) => {
         setOTP(['', '', '', ''])
     };
     return (
-        <div className="bg-white mb-3 pb-5 px-11 rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div onClick={()=>{
+            document.getElementsByTagName("input")[0].focus();
+        }} className="bg-white mb-3 pb-5 px-11 rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div className="flex justify-evenly">
                 <h2 className="text-2xl font-[Poppins] font-bold pt-5 pb-3 sm:p-6 sm:pb-4">
                     Enter the OTP send to your number <br /><span className="text-blue-800 ml-[108px]">{formData.mobile} </span> </h2>

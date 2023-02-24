@@ -12,6 +12,7 @@ import AdminNavbar from "./Components/Suepr_Admin/Layout/Navbar";
 import Turfs_Accepted from "./Components/Suepr_Admin/Tufs_Accepted";
 import Turf_Dashboard from "./Components/Turf_Management/Landin _Page/Turf_Dashboard";
 import Turf_Login from "./Components/Turf_Management/Landin _Page/Turf_Login";
+import UserProfile from "./Components/Home/UserProfile";
 
 const Dashboard = lazy(() => import("./Components/Suepr_Admin/Dashboard"))
 const Users = lazy(() => import("./Components/Suepr_Admin/Users"))
@@ -61,6 +62,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/turfs',
                 element: <Turf />
+            },
+            {
+                path: '/profile',
+                element: <UserProfile />
             },
             {
                 path: '/turf-admin/login',
