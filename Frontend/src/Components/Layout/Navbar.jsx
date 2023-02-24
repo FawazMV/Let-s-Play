@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/pngwing.com.png'
 import SignupModal from './SignupModal'
 
@@ -10,6 +10,9 @@ const Title = () => (
 
 
 const Navbar = () => {
+  const location = useLocation();
+  const navigate = useNavigate()
+  const path = location.pathname;
   let Links = [
     { name: "HOME", link: "/" },
     { name: "TURF BOOKING", link: "/turfs" },
@@ -19,7 +22,7 @@ const Navbar = () => {
   ];
   let [open, setOpen] = useState(false);
   return (
-    <div className='shadow-lg w-full fixed top-0 left-0'>
+    <div className='shadow-lg w-full fixed z-30 top-0 left-0'>
       <div className='lg:flex items-center justify-between bg-slate-800 py-4 lg:px-10 px-7'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
       text-white'>
@@ -44,7 +47,7 @@ const Navbar = () => {
               </li>
             ))
           }
-          <SignupModal />
+          {path === '/register-turf' ? (<button className="bg-indigo-600 text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 duration-500" onClick={() => navigate('/turf-admin/login')} >Dashboard</button>) : <SignupModal />}
         </ul>
       </div>
     </div>

@@ -4,7 +4,7 @@ const ShimmerTurf = () => {
             {Array(8)
                 .fill("")
                 .map((e, index) => (
-                    <div className=" bg-gray-900  animate-pulse">
+                    <div key={index} className=" bg-gray-900  animate-pulse">
                         <div className="h-52 bg-gray-500 "></div>
                         <div className="flex flex-col flex-1 p-6">
                             <div className="h-3 bg-gray-700 rounded w-1/3"></div>

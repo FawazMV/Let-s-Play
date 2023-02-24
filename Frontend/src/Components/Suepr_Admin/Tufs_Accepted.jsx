@@ -1,14 +1,20 @@
 
 import React, { useEffect, useState } from 'react';
-import { TurfsRequsted } from '../../API/AdminApi';
+import { ManageTurf, TurfsAccepted } from '../../API/AdminApi';
+import { ConfirmSwal } from './Layout/Swal';
 
-const Turf_Managementt = ({ turfs }) => {
+const Turf_Management = ({ turfs, update }) => {
     const [selectedTurf, setSelectedTurf] = useState(null);
     const [showTooltip, setShowTooltip] = useState(false);
-    console.log(turfs   )
     const handleTurfClick = (turf) => {
         setSelectedTurf(turf);
     };
+    const manageTurf = async (status, turf,) => {
+        const text = `Do you want to ${status ? '' : 'un'}block the court ${turf.courtName}!`
+        if (await ConfirmSwal(text)) {
+            ManageTurf(turf._id, status, 1234).then(() => update("" + turf._id + status))
+        }
+    }
 
     return (
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
@@ -27,13 +33,13 @@ const Turf_Managementt = ({ turfs }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {turfs.map((turf,index) => (
+                            {turfs.map((turf, index) => (
                                 <tr className='relative' key={turf._id} onMouseEnter={() => {
                                     handleTurfClick(turf)
                                     setShowTooltip(true)
                                 }} onMouseLeave={() => setShowTooltip(false)}>
                                     <td className="border px-4 py-2">
-                                        <div className="truncate">{index+1}</div>
+                                        <div className="truncate">{index + 1}</div>
                                     </td>
                                     <td className="border px-4 py-2">
                                         <div className="truncate">{turf.courtName}</div>
@@ -48,25 +54,23 @@ const Turf_Managementt = ({ turfs }) => {
                                         <div className="truncate">{turf.mobile}</div>
                                     </td>
                                     <td className="border px-4 py-2 flex justify-center items-center">
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2 w-full sm:w-auto">
-                                            Accept
-                                        </button>
-                                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2 w-full sm:w-auto">
-                                            Cancel
+                                        <button onClick={() => manageTurf(!turf.block, turf)} className={`${turf.block ? "bg-red-500 hover:bg-red-700" : "bg-green-500 hover:bg-green-700"} text-white font-bold py-2 px-4 rounded mx-2 w-full sm:w-auto`}>
+                                            {turf.block ? 'Unblock' : 'Block'}
                                         </button>
                                     </td>
                                     {showTooltip && selectedTurf && selectedTurf._id === turf._id && (
-                                        <div className="absolute bg-white shadow-md py-4 z-10 px-8  left-1/4 transform -translate-x-1/2 -translate-y-1/2">
+                                        <td className="absolute bg-white shadow-md py-4 z-10 px-8  left-1/4 transform -translate-x-1/2 -translate-y-1/2">
                                             <h2 className="text-lg font-bold mb-2">{selectedTurf.courtName}</h2>
-                                            <img src={selectedTurf.images[0].location} alt="Turf" className="mb-2 h-10" />
-                                            <p>{selectedTurf.loction_Details}</p>
-                                            <div className='flex justify-between text-lg'>
+                                            <div className='flex justify-around'>
+                                                <img src={selectedTurf.images[0].location} alt="Turf" className="mb-2 h-10" />
+                                                <img src={selectedTurf.images[1]?.location} alt="Turf" className="mb-2 h-10" />
+                                            </div>
+                                            <p className='text-sm'>{selectedTurf.loction_Details}</p>
+                                            <div className='flex justify-between text-[15px] font-semibold'>
                                                 <p>{selectedTurf.distric}</p><p>{selectedTurf.state}</p>
                                             </div>
-                                            
-                                            <p>{selectedTurf.email}</p>
-                                            <p>{selectedTurf.phone}</p>
-                                        </div>
+
+                                        </td>
                                     )}
                                 </tr>
                             ))}
@@ -81,17 +85,22 @@ const Turf_Managementt = ({ turfs }) => {
 
 
 
-const Turf_Management = () => {
+const Turfs_Accepted = () => {
     const [data, setData] = useState([])
+    const [update, setUpdate] = useState(false);
     useEffect(() => {
-        TurfsRequsted(123).then(data => setData(data))
+        getTurfs()
+    }, [update])
+
+    const getTurfs = () => {
+        TurfsAccepted(123).then(data => setData(data))
             .catch(err => console.log(err))
-    }, [])
+    }
     return (
-        <div className="container mx-auto py-8">
-            <Turf_Managementt turfs={data} />
+        <div className="container mx-auto  pt-28 pb-8">
+            <Turf_Management update={setUpdate} turfs={data} />
         </div>
     );
 };
 
-export default Turf_Management;
+export default Turfs_Accepted;

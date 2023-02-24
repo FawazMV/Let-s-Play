@@ -7,7 +7,7 @@ import cors from 'cors'
 
 dotenv.config()
 const app = express()
-app.use(express.json(), cors());
+app.use(express.json(),cors());
 
 const DATABASE_URL = process.env.DATABASE_URL
 mongoose.set("strictQuery", false);

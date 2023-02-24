@@ -5,14 +5,17 @@ import Navbar from "./Components/Layout/Navbar"
 import Body from './Components/Home/LandinPage'
 import Turf_Landing from "./Components/Turf_Management/Landin _Page/Turf_Landing";
 import Turf from "./Components/Home/Turfs";
-import Dashboard from "./Components/Suepr_Admin/Dashboard";
-import Users from "./Components/Suepr_Admin/Users";
-import Turf_Management from "./Components/Suepr_Admin/Turf_Management";
+// import Dashboard from "./Components/Suepr_Admin/Dashboard";
+// import Users from "./Components/Suepr_Admin/Users";
+// import Turf_Management from "./Components/Suepr_Admin/Turf_Requests";
 import AdminNavbar from "./Components/Suepr_Admin/Layout/Navbar";
+import Turfs_Accepted from "./Components/Suepr_Admin/Tufs_Accepted";
+import Turf_Dashboard from "./Components/Turf_Management/Landin _Page/Turf_Dashboard";
+import Turf_Login from "./Components/Turf_Management/Landin _Page/Turf_Login";
 
 const Dashboard = lazy(() => import("./Components/Suepr_Admin/Dashboard"))
 const Users = lazy(() => import("./Components/Suepr_Admin/Users"))
-const Turf_Management = lazy(() => import("./Components/Suepr_Admin/Turf_Management"))
+const Turf_Requests = lazy(() => import("./Components/Suepr_Admin/Turf_Requests"))
 
 
 
@@ -26,6 +29,14 @@ const Applayout = () => {
     )
 }
 const ApplayoutAdmin = () => {
+    return (
+        <>
+            <AdminNavbar />
+            <Outlet />
+        </>
+    )
+}
+const ApplayoutTurfAdmin = () => {
     return (
         <>
             <AdminNavbar />
@@ -50,6 +61,14 @@ const appRouter = createBrowserRouter([
             {
                 path: '/turfs',
                 element: <Turf />
+            },
+            {
+                path: '/turf-admin/login',
+                element: (
+                    <Suspense >
+                        <Turf_Login />
+                    </Suspense>
+                )
             }
         ]
     },
@@ -74,18 +93,48 @@ const appRouter = createBrowserRouter([
                 )
             },
             {
-                path: '/admin/turfs',
+                path: '/admin/turf-requests',
                 element: (
                     <Suspense >
-                        <Turf_Management />
+                        <Turf_Requests />
                     </Suspense>
                 )
             },
             {
-                path: '/admin/turf-requests',
+                path: '/admin/turfs',
                 element: (
                     <Suspense >
-                        <Turf_Management />
+                        <Turfs_Accepted />
+                    </Suspense>
+                )
+            }
+        ]
+    },
+    {
+        path: '/turf-admin',
+        element: <ApplayoutTurfAdmin />,
+        children: [
+            {
+                path: '/turf-admin',
+                element: (
+                    <Suspense >
+                        <Turf_Dashboard />
+                    </Suspense>
+                )
+            },
+            {
+                path: '/turf-admin/turf-requests',
+                element: (
+                    <Suspense >
+                        <Turf_Requests />
+                    </Suspense>
+                )
+            },
+            {
+                path: '/turf-admin/turfs',
+                element: (
+                    <Suspense >
+                        <Turfs_Accepted />
                     </Suspense>
                 )
             }

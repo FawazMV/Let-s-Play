@@ -60,7 +60,6 @@ export const ValidateTurfRegistration = (formData) => {
     if (!formData.images.length) {
         newErrors.imagesError = 'Image is required';
     }
-    console.log(newErrors);
 
     return newErrors;
 }

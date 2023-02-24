@@ -70,6 +70,10 @@ const turfSchema = new mongoose.Schema
             request: {
                 type: Boolean,
                 default: false
+            },
+            block: {
+                type: Boolean,
+                default: false
             }
 
 

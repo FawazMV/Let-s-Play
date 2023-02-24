@@ -1,5 +1,5 @@
 const Login = ()=>(
-    <div>Login</div>
+    <div className="pt-20">Login</div>
 )
 
 export default Login
