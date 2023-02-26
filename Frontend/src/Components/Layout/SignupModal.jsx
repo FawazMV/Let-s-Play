@@ -30,7 +30,9 @@ const SignupModal = () => {
         event.preventDefault();
         if (!validateForm()) return;
         if (isLogin) {
-            Login(formData).then(() => setIsOpen(false))
+            Login(formData).then((data) => {
+                console.log(data);
+                setIsOpen(false)})
                 .catch(error => setApiError(error));
         } else {
             Signup(formData).then(() => setOtpform(true))
