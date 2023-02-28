@@ -6,7 +6,7 @@ export const register = (formData) => {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-        }).then(() => resolve())
+        }).then(({data}) => resolve())
             .catch((err) => reject(err?.response?.data?.message))
     })
 

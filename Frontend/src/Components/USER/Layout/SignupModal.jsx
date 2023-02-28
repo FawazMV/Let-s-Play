@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import OtpForm from "./OtpForm";
-import { Signup, Login } from '../../API/UserAuth'
-import { ValidateSignupForm } from "../../Helpers/ValidateForm";
+import { Signup, Login } from '../../../API/UserAuth'
+import { ValidateSignupForm } from "../../../Helpers/ValidateForm";
+import { useDispatch } from 'react-redux'
+import { setToken } from "../../../utils/Redux/AuthSlice";
 const SignupModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
-    const [formData, setFormData] = useState({ name: "", email: "", password: "", mobile: "" });
+    const [formData, setFormData] = useState({ username: "", email: "", password: "", mobile: "" });
     const [errors, setErrors] = useState({});
     const [apiError, setApiError] = useState('')
     const [otpform, setOtpform] = useState(false);
@@ -25,14 +27,17 @@ const SignupModal = () => {
         setOtpform(false)
         setIsLogin(true)
     }
+    const dispatch = useDispatch()
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (!validateForm()) return;
         if (isLogin) {
             Login(formData).then((data) => {
-                console.log(data);
-                setIsOpen(false)})
+                dispatch(setToken(data))
+                localStorage.setItem('token', data);
+                setIsOpen(false)
+            })
                 .catch(error => setApiError(error));
         } else {
             Signup(formData).then(() => setOtpform(true))
@@ -61,26 +66,26 @@ const SignupModal = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="bg-white px-4 pt-4 pb-4 sm:p-4 sm:pb-2">
                                 <div className={`mb-3 ${isLogin ? 'hidden' : ''}`}>
-                                    <label className="block text-gray-700 font-medium mb-2" htmlFor="name">Name</label>
-                                    <input className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors?.name ? "border-red-500" : ""}`}
-                                        id="name" type="text" name="name" value={formData.name} onChange={handleInputChange} />
-                                    {errors.name && (<p className="text-red-500 text-xs italic"> {errors.name}</p>)}
+                                    <label className="block text-gray-700 font-medium mb-2" htmlFor="username">User Name</label>
+                                    <input autoComplete="off" className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors?.username ? "border-red-500" : ""}`}
+                                        id="username" type="text" name="username" value={formData.username} onChange={handleInputChange} />
+                                    {errors.username && (<p className="text-red-500 text-xs italic"> {errors.username}</p>)}
                                 </div>
                                 <div className="mb-3">
                                     <label className="block text-gray-700 font-medium mb-2" htmlFor="email">Email</label>
-                                    <input className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors?.email ? "border-red-500" : ""}`}
+                                    <input autoComplete="off" className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors?.email ? "border-red-500" : ""}`}
                                         id="email" type="email" name="email" value={formData.email} onChange={handleInputChange} />
                                     {errors.email && (<p className="text-red-500 text-xs italic">{errors.email}</p>)}
                                 </div>
                                 <div className={`mb-3 ${isLogin ? 'hidden' : ''}`}>
                                     <label className="block text-gray-700 font-medium mb-2" htmlFor="mobile">Mobile Number</label>
-                                    <input className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors?.mobile ? "border-red-500" : ""}`}
+                                    <input autoComplete="off" className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors?.mobile ? "border-red-500" : ""}`}
                                         id="mobile" type="" name="mobile" value={formData.mobile} onChange={handleInputChange} />
                                     {errors.mobile && (<p className="text-red-500 text-xs italic">{errors.mobile} </p>)}
                                 </div>
                                 <div className="mb-4">
                                     <label className="block text-gray-700 font-medium mb-2" htmlFor="password">Password</label>
-                                    <input className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? "border-red-500" : ""}`}
+                                    <input autoComplete="off" className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? "border-red-500" : ""}`}
                                         id="password" type="password" name="password" value={formData.password} onChange={handleInputChange} />
                                     {errors.password && (<p className="text-red-500 text-xs italic">{errors.password}</p>)}
                                 </div>

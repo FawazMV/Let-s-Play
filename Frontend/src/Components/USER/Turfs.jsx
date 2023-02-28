@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { getTurfs } from "../../API/TurfsApi"
-import SearchLoacation from "../Layout/SearchLocation";
-import ShimmerTurf from "../Layout/ShimmerTurf";
-import TurfCard from "../Layout/TurfCard";
+import SearchLoacation from "./Layout/SearchLocation";
+import ShimmerTurf from "./Layout/ShimmerTurf";
+import TurfCard from "./Layout/TurfCard";
 
 
 
@@ -18,7 +18,7 @@ const Turf = () => {
     }, [])
 
     return (
-        <div className='pt-[70px]'>
+        <div className='min-h-screen bg-gray-800 pt-[70px]'>
             <SearchLoacation setTurfs={setTurfs} />
             <section className="py-16 sm:py-16 bg-gray-800 text-gray-100">
                 <div className="container p-6 mx-auto space-y-8">

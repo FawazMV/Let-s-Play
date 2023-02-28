@@ -2,8 +2,8 @@
 export const ValidateSignupForm = (formData, isLogin) => {
     const newErrors = {};
 
-    if (!formData.name && !isLogin) {
-        newErrors.name = "Name is required";
+    if (!formData.username && !isLogin) {
+        newErrors.username = "Name is required";
     }
     if (!formData.email) {
         newErrors.email = "Email is required";
@@ -61,5 +61,24 @@ export const ValidateTurfRegistration = (formData) => {
         newErrors.imagesError = 'Image is required';
     }
 
+    return newErrors;
+}
+
+
+export const validateProfile = (formData) => {
+    const newErrors = {};
+    if (!formData.username) {
+        newErrors.username = "User name is required";
+    }
+    if (!formData.email) {
+        newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        newErrors.email = "Email is invalid";
+    }
+    if (!formData.mobile) {
+        newErrors.mobile = "Mobile number is required";
+    } else if (!/^\d{10}$/.test(formData.mobile) && !isLogin) {
+        newErrors.mobile = "Mobile number is invalid";
+    }
     return newErrors;
 }

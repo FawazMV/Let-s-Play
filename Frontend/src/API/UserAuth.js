@@ -9,10 +9,7 @@ export const Signup = (data) => {
 
 export const Login = (data) => {
     return new Promise((resolve, reject) => {
-        Axiosuser.post('/login', data).then(function (response) {
-            const token = response.headers.Authorization;
-            console.log(token);
-        })
+        Axiosuser.post('/login', data).then(({ data }) => resolve(data.token))
             .catch(err => reject(err?.response?.data?.message))
     })
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getLocationWiseTurfs } from "../../API/TurfsApi.js";
-import {Location_Search} from "../../API/Others.js"
+import { getLocationWiseTurfs } from "../../../API/TurfsApi.js";
+import {Location_Search} from "../../../API/Others.js"
 
 const SearchLoacation = ({ setTurfs }) => {
     const [searchTerm, setSearchTerm] = useState('');

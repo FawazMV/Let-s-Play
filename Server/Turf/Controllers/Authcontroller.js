@@ -11,6 +11,7 @@ export const registration = async (req, res, next) => {
             password: hashedPassword, images: req.files
         });
         newUser.save();
+        return res.status(200).json({ message: 'Registration successfull' })
     }
     catch (err) {
         next(err)

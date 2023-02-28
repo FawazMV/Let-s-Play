@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import avatar from '../../assets/avatar.png'
+
 
 const UserList = ({ users }) => {
-    const avatar = 'https://via.placeholder.com/50'
     return (
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
             <div className="px-6 xl:px-32 py-4">

@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import Logo from '../../assets/pngwing.com.png'
+import Logo from '../../../assets/pngwing.com.png'
 import SignupModal from './SignupModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { setToken } from "../../../utils/Redux/AuthSlice";
+import jwtDecode from 'jwt-decode'
 
 
 const Title = () => (
@@ -10,6 +13,18 @@ const Title = () => (
 
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => retriveToken(), [])
+  const retriveToken = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp > currentTime) dispatch(setToken(token))
+    }
+  }
+  const islogin = useSelector((store) => store.auth.token);
   const location = useLocation();
   const navigate = useNavigate()
   const path = location.pathname;
@@ -47,7 +62,7 @@ const Navbar = () => {
               </li>
             ))
           }
-          {path === '/register-turf' ? (<button className="bg-indigo-600 text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 duration-500" onClick={() => navigate('/turf-admin/login')} >Dashboard</button>) : <SignupModal />}
+          {path === '/register-turf' ? (<button className="bg-indigo-600 text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 duration-500" onClick={() => navigate('/turf-admin/login')} >Dashboard</button>) : islogin ? <ProfileButon /> : <SignupModal />}
         </ul>
       </div>
     </div>
@@ -55,3 +70,13 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+const ProfileButon = () => (
+  <span className='text-sm lg:ml-8 lg:my-0 my-7'>  <Link to='/profile'>
+    <span className=' text-gray-800 lg:hidden hover:text-gray-400 duration-500'>PROFILE</span>
+    <svg width="30" height="30" fill="currentColor" className="bi bi-person-circle hidden lg:block  text-white" viewBox="0 0 16 16">
+      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+      <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+    </svg></Link></span>
+)

@@ -27,7 +27,7 @@ export const getAllTurfsAdmin = (req, res, next) => {
 
 
 export const getTurfRequests = (req, res, next) => {
-    turfmodel.find({ request: true }).then((data) => res.status(200).json(data))
+    turfmodel.find({ request: false }).then((data) => res.status(200).json(data))
         .catch((err) => res.status(500).json({ err: err }))
 }
 

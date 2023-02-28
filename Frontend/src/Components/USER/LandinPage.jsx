@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import img from '../../assets/meet-pals.png'
-import Button from '../Layout/Button'
+import Button from './Layout/Button'
 const Body = () => {
     return (
         <div className="flex justify-evenly items-end bg-slate-800 p-10 md:p-24 w-full h-screen lg:flex-wrap flex-wrap-reverse">
