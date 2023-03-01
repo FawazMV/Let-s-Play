@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt'
 
 export const signUp = async (req, res, next) => {
     try {
-        console.log(req.body)
         const user = await user_Model.findOne({ email: req.body.email })
         if (user) return res.status(409).json({ message: "User already exists" })
         const mobile = await user_Model.findOne({ mobile: req.body.mobile })

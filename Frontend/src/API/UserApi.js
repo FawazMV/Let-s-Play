@@ -12,7 +12,6 @@ export const getUserDetails = (token) => {
 }
 
 export const updateProfile = (data, token) => {
-    alert()
     return new Promise((resolve, reject) => {
         Axiosuser.put('/update-profile', data   , {
             headers: {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserDetails, updateProfile } from '../../API/UserApi';
 import avatar from '../../assets/avatar.png'
-import { validateProfile } from '../../Helpers/ValidateForm';
+import { FormValidate } from '../../Helpers/ValidateForm';
 import { removeToken } from '../../utils/Redux/AuthSlice';
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ const UserProfile = () => {
         });
     }
     const update = () => {
-        const err = validateProfile(user)
+        const err = FormValidate(user)
         setErrors(err);
         if (Object.keys(err).length === 0) {
             updateProfile(user, token);

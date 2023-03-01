@@ -16,6 +16,7 @@ import UserProfile from "./Components/USER/UserProfile";
 import { Provider, useSelector } from "react-redux";
 import Store from "./utils/Redux/Store";
 import UserLogin from "./Components/USER/UserLogin";
+import UserSignup from "./Components/USER/UserSignup";
 const Dashboard = lazy(() => import("./Components/Suepr_Admin/Dashboard"))
 const Users = lazy(() => import("./Components/Suepr_Admin/Users"))
 const Turf_Requests = lazy(() => import("./Components/Suepr_Admin/Turf_Requests"))
@@ -52,7 +53,7 @@ const ApplayoutTurfAdmin = () => {
 
 const Protected = ({ Component }) => {
     const authToken = useSelector((store) => store.auth.token);
-    return authToken ? <Component /> : <Navigate to='/turfs' replace />;
+    return authToken ? <Component /> : <Navigate to='/login' replace />;
 }
 
 const appRouter = createBrowserRouter([
@@ -64,6 +65,7 @@ const appRouter = createBrowserRouter([
             { path: '/register-turf', element: <Turf_Landing /> },
             { path: '/turfs', element: <Turf /> },
             { path: '/login', element: <UserLogin /> },
+            { path: '/signup', element: <UserSignup /> },
             { path: '/profile', element: <Protected Component={UserProfile} /> },
             { path: '/turf-admin/login', element: <Turf_Login /> }
         ]
