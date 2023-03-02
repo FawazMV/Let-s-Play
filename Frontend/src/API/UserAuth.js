@@ -14,14 +14,21 @@ export const userLogin = (data) => {
     })
 }
 
-export const OTP = (data) => {
+export const otpVerification = (data) => {
     return new Promise((resolve, reject) => {
-        Axiosuser.post('/otp', data).then(() => resolve())
+        Axiosuser.post('/verify-otp', data).then(() => resolve())
             .catch(err => reject(err?.response?.data?.message))
     })
 }
 
-export const Resend = (mobile) => {
+export const registerUser = (data) => {
+    return new Promise((resolve, reject) => {
+        Axiosuser.post('/register-user', data).then(() => resolve())
+            .catch(err => reject(err?.message))
+    })
+}
+
+export const otpResend = (mobile) => {
     return new Promise((resolve, reject) => {
         Axiosuser.post('/otp-resend', { mobile }).then(() => resolve())
             .catch((err) => reject(err.message))

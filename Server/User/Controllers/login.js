@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 dotenv.config()
-console.log(process.env.JWT_SECRET)
 
 export const login = async (req, res, next) => {
     try {

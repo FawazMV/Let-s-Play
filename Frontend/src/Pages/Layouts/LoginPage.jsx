@@ -2,7 +2,7 @@ import { FormValidate } from '../../Helpers/ValidateForm';
 import { userLogin } from '../../API/UserAuth';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-const LoginPage = ({ submit, apiError }) => {
+const LoginPage = ({ submit, apiError, title, signup }) => {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
     const handleInputChange = (event) => {
@@ -23,12 +23,12 @@ const LoginPage = ({ submit, apiError }) => {
     }
     return (
         <>
-            <div className='absolute z-[-5] bg-gray-900 opacity-95 left-0 top-0 w-full h-screen' />
+            <div className='absolute z-[-5] bg-gray-900 opacity-95 left-0 top-0 w-full min-h-screen' />
             <div className='absolute z-[-1] flex justify-center w-full h-screen items-center'>
                 <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100">
                     <div className="mb-8 text-center">
                         <h1 className="my-3 text-4xl font-bold">Sign in</h1>
-                        <p className="text-sm text-gray-400">Sign in to access your Turf Dashboard</p>
+                        <p className="text-sm text-gray-400">Sign in to access your {title}</p>
                     </div>
                     <form onSubmit={handleSubmit} className="space-y-7 ng-untouched ng-pristine ng-valid">
                         <div className="space-y-4">
@@ -52,9 +52,9 @@ const LoginPage = ({ submit, apiError }) => {
                             <div>
                                 <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-violet-400 text-gray-900">Sign in</button>
                             </div>
-                            <p className="px-6 text-sm text-center text-gray-400">Don't have an account yet?
-                                <Link to='/signup' className="hover:underline text-violet-400"> Sign up</Link>.
-                            </p>
+                            {signup ? <p className="px-6 text-sm text-center text-gray-400">Don't have an account yet?
+                                <Link to={signup} className="hover:underline text-violet-400"> Sign up</Link>.
+                            </p> : ''}
                         </div>
                     </form>
                 </div></div>

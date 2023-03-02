@@ -9,4 +9,4 @@ export const Axiosturf = Axios.create({
 
 export const AxiosAdmin = Axios.create({
     baseURL: 'http://localhost:7171'
-})
+})  

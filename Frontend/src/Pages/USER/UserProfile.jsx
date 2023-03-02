@@ -15,8 +15,8 @@ const UserProfile = () => {
         token && getProfile()
     }, [token])
     const getProfile = async () => {
-        const user = await getUserDetails(token).catch((err) => console.log(err))
-        setUser(user)
+        const { email, mobile, username } = await getUserDetails(token).catch((err) => console.log(err))
+        setUser({ email, mobile, username })
     }
     const editProfile = (event) => {
         setUser({
@@ -26,6 +26,8 @@ const UserProfile = () => {
     }
     const update = () => {
         const err = FormValidate(user)
+        alert(err)
+        console.log(err)
         setErrors(err);
         if (Object.keys(err).length === 0) {
             updateProfile(user, token);
@@ -100,8 +102,8 @@ const UserProfile = () => {
 
                         </div>
                         <div className="col-span-full flex justify-end pt-3">
-                            <button onClick={logout} class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
+                            <button onClick={logout} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
                                 <span>Logout</span>
                             </button>
                         </div>

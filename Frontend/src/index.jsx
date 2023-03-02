@@ -1,25 +1,25 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom"
-import Navbar from "./Components/USER/Layout/Navbar"
-import Body from './Components/USER/LandinPage'
-import Turf_Landing from "./Components/Turf_Management/Landin _Page/Turf_Landing";
-import Turf from "./Components/USER/Turfs";
-// import Dashboard from "./Components/Suepr_Admin/Dashboard";
-// import Users from "./Components/Suepr_Admin/Users";
-// import Turf_Management from "./Components/Suepr_Admin/Turf_Requests";
-import AdminNavbar from "./Components/Suepr_Admin/Layout/Navbar";
-import Turfs_Accepted from "./Components/Suepr_Admin/Tufs_Accepted";
-import Turf_Dashboard from "./Components/Turf_Management/Landin _Page/Turf_Dashboard";
-import Turf_Login from "./Components/Turf_Management/Landin _Page/Turf_Login";
-import UserProfile from "./Components/USER/UserProfile";
+import Navbar from "./Pages/USER/Layout/Navbar"
+import Body from './Pages/USER/LandinPage'
+import Turf_Landing from "./Pages/Turf_Management/Landin _Page/Turf_Landing";
+import Turf from "./Pages/USER/Turfs";
+// import Dashboard from "./Pages/Suepr_Admin/Dashboard";
+// import Users from "./Pages/Suepr_Admin/Users";
+// import Turf_Management from "./Pages/Suepr_Admin/Turf_Requests";
+import AdminNavbar from "./Pages/Suepr_Admin/Layout/Navbar";
+import Turfs_Accepted from "./Pages/Suepr_Admin/Tufs_Accepted";
+import Turf_Dashboard from "./Pages/Turf_Management/Landin _Page/Turf_Dashboard";
+import Turf_Login from "./Pages/Turf_Management/Landin _Page/Turf_Login";
+import UserProfile from "./Pages/USER/UserProfile";
 import { Provider, useSelector } from "react-redux";
 import Store from "./utils/Redux/Store";
-import UserLogin from "./Components/USER/UserLogin";
-import UserSignup from "./Components/USER/UserSignup";
-const Dashboard = lazy(() => import("./Components/Suepr_Admin/Dashboard"))
-const Users = lazy(() => import("./Components/Suepr_Admin/Users"))
-const Turf_Requests = lazy(() => import("./Components/Suepr_Admin/Turf_Requests"))
+import UserLogin from "./Pages/USER/UserLogin";
+import UserSignup from "./Pages/USER/UserSignup";
+const Dashboard = lazy(() => import("./Pages/Suepr_Admin/Dashboard"))
+const Users = lazy(() => import("./Pages/Suepr_Admin/Users"))
+const Turf_Requests = lazy(() => import("./Pages/Suepr_Admin/Turf_Requests"))
 
 
 const Applayout = () => {

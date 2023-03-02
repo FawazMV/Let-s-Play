@@ -13,7 +13,6 @@ export const otpcallin = (phone) => {
         .services(serviceSID)
         .verifications.create({ to: `+91${phone}`, channel: "sms" })
         .then((verification) => console.log(verification.sid))
-       
         .catch((error) => console.log(error.message));
 };
 export const verifyOtp = (phone, otp) => {

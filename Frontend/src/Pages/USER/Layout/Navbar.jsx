@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Logo from '../../../assets/pngwing.com.png'
-import SignupModal from './SignupModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { setToken } from "../../../utils/Redux/AuthSlice";
 import jwtDecode from 'jwt-decode'

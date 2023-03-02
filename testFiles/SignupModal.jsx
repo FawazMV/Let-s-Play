@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import OtpForm from "./OtpForm";
-import { Signup, Login } from '../../../API/UserAuth'
-import { ValidateSignupForm } from "../../../Helpers/ValidateForm";
+import OtpForm from "../Frontend/src/Pages/USER/Layout/OtpForm";
+import { Signup, Login } from '../Frontend/src/API/UserAuth'
+import { ValidateSignupForm } from "../Frontend/src/Helpers/ValidateForm";
 import { useDispatch } from 'react-redux'
-import { setToken } from "../../../utils/Redux/AuthSlice";
+import { setToken } from "../Frontend/src/utils/Redux/AuthSlice";
 const SignupModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(false);

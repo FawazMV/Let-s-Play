@@ -1,32 +1,9 @@
-import React, { useState } from 'react'
-import { FormValidate } from '../../Helpers/ValidateForm';
-import { userLogin, otpCall } from '../../API/UserAuth';
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import OtpPage from './Layout/OtpPage';
-// import { setToken } from "../../utils/Redux/AuthSlice.js";
-// import { userLogin } from '../../API/UserAuth';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FormValidate } from "../../../Helpers/ValidateForm";
+import OtpPage from "./OtpPage";
 
-const UserSignup = () => {
-    const navigate = useNavigate()
-    const [apiError, setApiError] = useState()
-    const [otpPage, setOtpPage] = useState(true)
-    const usersignupAPIcall = async (formData) => {
-        const data = await userLogin(formData).catch(error => setApiError(error));
-        navigate('/login')
-    }
-    const otpCallApi = ({ mobile, email }) => {
-        otpCall({ mobile, email }).then(() => setOtpPage(true))
-            .catch(err => setApiError(err))
-    }
-    return (<> <SignupPage submit={otpCallApi} apiError={apiError} >{otpPage ? <OtpPage /> : ''}</SignupPage> </>)
-}
-
-export default UserSignup
-
-
-
-const SignupPage = ({ submit, apiError }) => {
+const SignupPage = ({ submit, apiError, otpPage, modal, otpErr, otpSubmit }) => {
     const [formData, setFormData] = useState({ email: "", password: "", mobile: '', username: '' });
     const [errors, setErrors] = useState({});
     const handleInputChange = (event) => {
@@ -47,7 +24,8 @@ const SignupPage = ({ submit, apiError }) => {
     }
     return (
         <>
-            <div className='absolute z-[-5] bg-gray-900 opacity-95 left-0 top-0 w-full h-screen' />
+            {otpPage ? <OtpPage otpSubmit={otpSubmit} number={formData.mobile} modal={modal} otpErr={otpErr} /> : ''}
+            <div className='absolute z-[-5] bg-gray-900 opacity-95 left-0 top-0 w-full min-h-screen ' />
             <div className='absolute z-[-1] flex justify-center w-full h-screen items-center'>
                 <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100">
                     <div className="mb-8 text-center">
@@ -95,4 +73,4 @@ const SignupPage = ({ submit, apiError }) => {
     )
 }
 
-
+export default SignupPage
