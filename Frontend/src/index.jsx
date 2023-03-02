@@ -17,6 +17,7 @@ import { Provider, useSelector } from "react-redux";
 import Store from "./utils/Redux/Store";
 import UserLogin from "./Pages/USER/UserLogin";
 import UserSignup from "./Pages/USER/UserSignup";
+import MyComponent from "./Pages/USER/TurfDetails";
 const Dashboard = lazy(() => import("./Pages/Suepr_Admin/Dashboard"))
 const Users = lazy(() => import("./Pages/Suepr_Admin/Users"))
 const Turf_Requests = lazy(() => import("./Pages/Suepr_Admin/Turf_Requests"))
@@ -63,7 +64,8 @@ const appRouter = createBrowserRouter([
         children: [
             { path: '/', element: <Body /> },
             { path: '/register-turf', element: <Turf_Landing /> },
-            { path: '/turfs', element: <Turf /> },
+            { path: '/turfs', element: <Turf /> }, 
+            { path: '/turf-123', element: <MyComponent /> },
             { path: '/login', element: <UserLogin /> },
             { path: '/signup', element: <UserSignup /> },
             { path: '/profile', element: <Protected Component={UserProfile} /> },
