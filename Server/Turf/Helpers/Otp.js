@@ -17,6 +17,7 @@ export const otpcallin = (phone) => {
 };
 export const verifyOtp = (phone, otp) => {
   return new Promise((resolve, reject) => {
+    console.log(phone, otp);
     client.verify.v2
         .services(serviceSID)
       .verificationChecks.create({ to: `+91${phone}`, code: otp })

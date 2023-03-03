@@ -2,6 +2,46 @@
 
 import React, { useState } from 'react';
 
+const Turfs = ({ name, location, locationDetails, rating, reviews, photos, type, Number }) => {
+
+    return (
+        <>
+            <div className="bg-white  w-full sm:px-10 md:px-32 lg:px-60 xl:px-80 py-6 mb-4">
+                <PhotoManagement photos={photos} />
+                <div className='px-11 xl:px-28 py-5 w-full'>
+                    <div className="w-full flex justify-between">
+                        <h2 className='font-extrabold text-3xl uppercase tracking-widest'>{name}</h2>
+                        <p className='font-bold mt-2'>( {type} )</p>
+                    </div>
+                    <div className='flex justify-between'>
+                        <p className='mt-1 font-semibold'>{location}</p>
+                        <p className='mt-1 font-normal text-gray-700'>{locationDetails}</p>
+                    </div>
+
+                    <div className='flex justify-between'>
+                        <div className="mt-2">
+                            <StarRating rating={rating} />
+                        </div>
+                        <p className='mt-2 flex font-light text-sm'>
+                            <svg width="14" height="14" fill="currentColor" className="mr-2 mt-1 bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                            </svg>
+                            {Number}
+                        </p>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div className='bg-white  w-full px-3 sm:px-5 md:px-20 lg:px-44 xl:px-[200px] py-6 mb-4'>
+                <ProductTabs reviews={reviews} />
+            </div>
+        </>
+
+    );
+}
+
 const PhotoManagement = ({ photos }) => {
     const [currentImage, setCurrentImage] = useState(0);
 
@@ -14,13 +54,13 @@ const PhotoManagement = ({ photos }) => {
     };
     return (
         <div className="flex pt-10">
-            <button className="m-3 text-gray-500" onClick={handlePrevClick} >
+            <button className="m-3 xl:m-10 text-gray-500" onClick={handlePrevClick} >
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                     <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                 </svg>
             </button>
             <img className="w-full max-h-[400px] lg:min-h-[400px] lg:min-w-[400px] shadow-2xl rounded-lg" src={photos[currentImage]} alt={`Photo ${currentImage}`} />
-            <button className="m-3 text-gray-500" onClick={handleNextClick}  >
+            <button className="m-3 xl:m-10 text-gray-500" onClick={handleNextClick}  >
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                     <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                 </svg>
@@ -71,44 +111,148 @@ const StarRating = ({ rating }) => {
 
 
 
-const Turfs = ({ name, location, locationDetails, rating, reviews, photos, type }) => {
+;
+function ProductTabs({ reviews }) {
+    const [activeTab, setActiveTab] = useState("details");
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
+    };
 
     return (
-        <div className="bg-white  w-full sm:px-10 md:px-32 lg:px-60 xl:px-[400px] py-6 mb-4">
-            <PhotoManagement photos={photos} />
-            <div className='px-11 py-5 w-full'>
-                <div className="w-full flex justify-between">
-                    <h2 className='font-extrabold text-3xl uppercase tracking-widest'>{name}</h2>
-                    <p className='font-bold mt-2'>( {type} )</p>
-                </div>
-                <div className='flex justify-between'>
-                    <p className='mt-1 font-semibold'>{location}</p>
-                    <p className='mt-1 font-normal text-gray-700'>{locationDetails}</p>
-                </div>
-
-                <div className='flex justify-between'>
-                    <div className="mt-2">
-                        <StarRating rating={rating} />
+        <div className="w-full shadow">
+            <div className="border-b border-gray-200">
+                <nav className="-mb-px flex" aria-label="Tabs">
+                    <button className={`${activeTab === "details"
+                        ? "border-indigo-500 text-indigo-600"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200"
+                        } w-1/2 py-4 px-1 text-center border-b-2 font-medium text-sm uppercase`}
+                        onClick={() => handleTabClick("details")} > Book Your Spot
+                    </button>
+                    <button className={`${activeTab === "reviews"
+                        ? "border-indigo-500 text-indigo-600"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200"
+                        } w-1/2 py-4 px-1 text-center border-b-2 font-medium text-sm uppercase`}
+                        onClick={() => handleTabClick("reviews")}  >  Reviews & Ratings
+                    </button>
+                </nav>
+            </div>
+            <div className="py-8 px-4">
+                {activeTab === "details" && (
+                    <div>
+                        <h2 className="text-lg font-medium text-gray-900">Book Your Spot</h2>
+                        {/* Add product details content here */}
+                        <Bookings />
                     </div>
-                    <p className='mt-2 font-light text-sm'>5 Reviews</p>
-                </div>
-                
-                <div className='flex justify-between'>
-                    <div className="mt-2">
-                      
+                )}
+                {activeTab === "reviews" && (
+                    <div>
+                        <h2 className="text-lg font-medium text-gray-900">Product Reviews</h2>
+                        {reviews.map((review) => {
+                            return (
+                                <div className="review bg-white rounded-lg p-4 shadow-md">
+                                    <img className="author-image rounded-full w-10 h-10 mr-2" src={review.authorImage} alt={`${review.authorName}'s profile picture`} />
+                                    <div className="author-name font-bold text-gray-700">{review.authorName}</div>
+                                    <div className="comment text-gray-600">{review.comment}</div>
+                                </div>
+                            );
+                        })}
                     </div>
-                    <p className='mt-2 font-light text-sm'>5 Reviews</p>
-                </div>
+                )}
             </div>
         </div>
     );
-};
+}
+
+import moment from 'moment';
+import { useParams } from 'react-router-dom';
+const Bookings = () => {
+    const currentDate = new Date().toLocaleDateString();
+    const tomorrow = new Date(currentDate);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowDate = tomorrow.toLocaleDateString();
+    const options = { weekday: 'long' };
+    const dayOfWeek = tomorrow.toLocaleDateString('en-US', options);
+    return (
+        <div>{currentDate}
+            <div class="relative overflow-x-auto shadow-md ">
+                <table class="w-full text-sm text-left text-blue-100">
+                    <thead class="text-xs text-black uppercase  border border-gray-800 ">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 border-r border-gray-800">
+                                Time Slots
+                            </th>
+                            {Array(7).fill('').map((e, index) => {
+                                const localDate = new Date().toLocaleDateString();
+                                let newDate = new Date(localDate)
+                                newDate.setDate(newDate.getDate() + index);
+                                const options = { weekday: 'long' };
+                                const dayOfWeek = newDate.toLocaleDateString('en-US', options);
+                                newDate = newDate.toLocaleDateString()
+                                return (
+                                    <th scope="col" class="px-4 py-3 border-r border-gray-800   ">
+                                        {newDate} <br /> {dayOfWeek}
+                                    </th>
+                                )
+                            })}
+
+                        </tr>
+                    </thead>
+                    <tbody className='border border-gray-800'>
+                        {Array(7).fill({ time: '10:00', hours: 2 }).map(({ time, hours }, index) => {
+
+                            const date = new Date();
+                            date.setHours(10);
+                            date.setMinutes(0);
+                            date.setSeconds(0);
+                            date.setMilliseconds(0);
+
+                            const ls=(date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
+
+                            console.log('Input:', hours, time);
+                            const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+                            const match = timeRegex.exec(time);
+                            console.log('Match:', match);
+                            if (!match) {
+                                throw new Error('Invalid time format: ' + time);
+                            }
+                            const [, hoursStr, minutesStr] = match;
+                            console.log('Hours/minutes:', hoursStr, minutesStr);
+                            // const date = new Date();
+                            date.setHours(parseInt(hoursStr, 10) + hours);
+                            date.setMinutes(parseInt(minutesStr, 10));
+                            console.log('Date:', date);
+                            const output = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+                            console.log('Output:', output);
+                            const finaltime = output
+                            return (
+                                <tr className="text-black border-b border-gray-800">
+                                    <th scope="row" class="px-6 py-2 font-medium whitespace-nowrap border-r border-gray-800">
+                                        {ls}- <br /> 10:00 pm
+                                    </th>
+                                    {Array(7).fill('').map((e, index) => (<td class="px-6 py-4 border-r border-gray-800 bg-red-600">
+                                        Booked
+                                    </td>))}
+
+                                </tr>
+                            )
+                        })}
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div >
+    );
+}
 
 
 
 const TurfDetails = () => {
+    const { id } = useParams()
     const turf = {
         name: 'My Turf',
+        Number: 9072879663,
         type: 'Football',
         location: 'Anytown ,  USA',
         locationDetails: 'Located next to the park',

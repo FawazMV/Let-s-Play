@@ -18,7 +18,7 @@ const OtpForm = ({ number, modal, Registration }) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         const joinedOTP = otp.join("");
-        OTP(joinedOTP, 9072879663).then(() => {
+        OTP(joinedOTP, number).then(() => {
             Registration()
             modal(false)
         }).catch((err) => setErr(err))

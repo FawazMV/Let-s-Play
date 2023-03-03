@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+
 const TurfCard = ({ _id, event, courtName, location, images }) => (
+   
     <article key={_id} className="flex flex-col  bg-gray-900">
         <a rel="noopener noreferrer" href="#" aria-label="Te nulla oportere reprimique his dolorum">
             <img alt="" className="object-cover w-full h-52 bg-gray-500" src={images[0].location} />
