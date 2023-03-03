@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.star {
+    @apply inline-block;
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star.checked {
+    @apply text-yellow-500;
+}
