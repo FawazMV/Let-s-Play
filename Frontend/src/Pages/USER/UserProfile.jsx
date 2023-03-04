@@ -15,7 +15,7 @@ const UserProfile = () => {
         token && getProfile()
     }, [token])
     const getProfile = async () => {
-        const { email, mobile, username } = await getUserDetails(token).catch((err) => console.log(err))
+        const { email, mobile, username } = await getTurfProfile(token).catch((err) => console.log(err))
         setUser({ email, mobile, username })
     }
     const editProfile = (event) => {

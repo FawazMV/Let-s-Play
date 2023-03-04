@@ -32,3 +32,11 @@ export const Resend = (mobile) => {
             .catch((err) => reject(err.message))
     })
 }
+
+
+export const turfLogin = (data) => {
+    return new Promise((resolve, reject) => {
+        Axiosturf.post('/turf-login', data).then(({ data }) => resolve(data.token))
+            .catch(err => reject(err?.response?.data?.message))
+    })
+}

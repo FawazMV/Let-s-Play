@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Location_Search } from "../../../../API/Others";
+import { Location_Search } from "../../../API/Others";
 
 const LocationSearch = ({ formLocation, err }) => {
     const [searchTerm, setSearchTerm] = useState('');

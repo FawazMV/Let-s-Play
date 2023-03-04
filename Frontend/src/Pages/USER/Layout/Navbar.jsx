@@ -16,7 +16,7 @@ const Navbar = () => {
   useEffect(() => retriveToken(), [])
   const retriveToken = () => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token && token != 'undefined') {
       const decodedToken = jwtDecode(token);
       const currentTime = Date.now() / 1000;
       if (decodedToken.exp > currentTime) dispatch(setToken(token))

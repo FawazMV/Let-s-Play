@@ -45,3 +45,16 @@ export const ManageTurf = (req, res, next) => {
     turfmodel.updateOne({ _id: req.body.id }, { $set: { block: req.body.status } }).then(() => res.status(200).json())
         .catch((err) => res.status(500).json({ err: err }))
 }
+
+
+export const turfDetails = (req, res, next) => {
+    turfmodel.findById(req.user.id).then(data => res.status(200).json(data))
+        .catch(err => res.status(500).json(err))
+}
+
+export const updateTurfDetails = (req, res, next) => {
+    console.log(req.body)
+    const data = req.body
+    turfmodel.updateOne({ _id: req.user.id }, { $set: data }).then(() => res.status(200).json())
+        .catch(err => res.status(500).json(err))
+}

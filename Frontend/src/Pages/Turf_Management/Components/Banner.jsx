@@ -1,4 +1,4 @@
-import img from '../../../../assets/partnerwithus.jpg'
+import img from '../../../assets/partnerwithus.jpg'
 const Banner = ({ div }) => {
     return (
         <div style={{

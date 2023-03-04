@@ -66,10 +66,18 @@ const turfSchema = new mongoose.Schema
                 type: Number,
                 default: '1400'
             },
-
+            enquiryNumber: {
+                type: String
+            },
+            openingTime: {
+                type: String
+            },
+            closingTime: {
+                type: String
+            },
             request: {
-                type: Boolean,
-                default: false
+                type: String,
+                default: 'Pending'
             },
             block: {
                 type: Boolean,

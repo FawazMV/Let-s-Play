@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import { ValidateTurfRegistration } from "../../../../Helpers/ValidateForm";
-import { EmailCheck, register } from '../../../../API/TurfAuth'
+import { ValidateTurfRegistration } from "../../../Helpers/ValidateForm";
+import { EmailCheck, register } from '../../../API/TurfAuth'
 import ContactInfo from "./ContactInfo";
-import { TurfRegistrationDiv as FormDiv, initialState, errorState } from "../../../constats";
+import { TurfRegistrationDiv as FormDiv, initialState, errorState } from "../../constats";
 import Otp from "./Otp";
 import LocationSearch from "./LocationSearch.jsx";
 
@@ -62,7 +62,7 @@ const Form = ({ div }) => {
                                     FormDiv.map(val => (
                                         <div className="mb-4" key={`div${val.id}`} >
                                             <label className="block text-gray-600 font-semibold mb-2" htmlFor={`${val.id}Register`}>{val.label}</label>
-                                            <input autoComplete="of" className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors[val.id + 'Error'] ? "border-red-500" : ""}`}
+                                            <input autoComplete="off" className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors[val.id + 'Error'] ? "border-red-500" : ""}`}
                                                 id={`${val.id}Register`} type="text" name={`${val.id}`} placeholder={`${val.placeholder}`} value={formData[val.id]} onChange={handleChange} />
                                             <p className="text-red-500 text-xs italic">{errors[val.id + 'Error']}</p>
                                         </div>

@@ -3,24 +3,25 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom"
 import Navbar from "./Pages/USER/Layout/Navbar"
 import Body from './Pages/USER/LandinPage'
-import Turf_Landing from "./Pages/Turf_Management/Landin _Page/Turf_Landing";
+import Turf_Registration from "./Pages/Turf_Management/Turf_Registration";
 import Turf from "./Pages/USER/Turfs";
-// import Dashboard from "./Pages/Suepr_Admin/Dashboard";
-// import Users from "./Pages/Suepr_Admin/Users";
-// import Turf_Management from "./Pages/Suepr_Admin/Turf_Requests";
 import AdminNavbar from "./Pages/Suepr_Admin/Layout/Navbar";
 import Turfs_Accepted from "./Pages/Suepr_Admin/Tufs_Accepted";
-import Turf_Dashboard from "./Pages/Turf_Management/Landin _Page/Turf_Dashboard";
-import Turf_Login from "./Pages/Turf_Management/Landin _Page/Turf_Login";
+import Turf_Dashboard from "./Pages/Turf_Management/Turf_Dashboard";
+import Turf_Login from "./Pages/Turf_Management/Turf_Login";
 import UserProfile from "./Pages/USER/UserProfile";
-import { Provider, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import Store from "./utils/Redux/Store";
 import UserLogin from "./Pages/USER/UserLogin";
 import UserSignup from "./Pages/USER/UserSignup";
 import TurfDetails from "./Pages/USER/TurfDetails";
+import TurfPorfile from "./Pages/Turf_Management/TurfProfile";
+import { setTurfAuth } from "./utils/Redux/TurfAuthSlice";
 const Dashboard = lazy(() => import("./Pages/Suepr_Admin/Dashboard"))
 const Users = lazy(() => import("./Pages/Suepr_Admin/Users"))
 const Turf_Requests = lazy(() => import("./Pages/Suepr_Admin/Turf_Requests"))
+import jwtDecode from "jwt-decode"
+import TurfNavbar from "./Pages/Turf_Management/Components/TurfNavbar";
 
 
 const Applayout = () => {
@@ -41,11 +42,34 @@ const ApplayoutAdmin = () => {
         </>
     )
 }
+const AuthTurf = () => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        retriveToken()
+    }, [])
+    const retriveToken = () => {
+        const token = localStorage.getItem('turftoken');
+        if (token && token != 'undefined') {
+            const decodedToken = jwtDecode(token);
+            const currentTime = Date.now() / 1000;
+            if (decodedToken.exp > currentTime) dispatch(setTurfAuth(token));
+        }
+    }
+}
+
+const TurfProtect = ({ Component }) => {
+    const authToken = useSelector((store) => store.turfAuth.token) || localStorage.getItem('turftoken');
+    return authToken ? <Component /> : <Navigate to='/turf-admin/login' />;
+}
 const ApplayoutTurfAdmin = () => {
+
     return (
         <>
-            <AdminNavbar />
-            <Outlet />
+            <Provider store={Store}>
+                <AuthTurf />
+                <TurfNavbar />
+                <TurfProtect Component={Outlet} />
+            </Provider>
         </>
     )
 }
@@ -63,13 +87,14 @@ const appRouter = createBrowserRouter([
         element: <Applayout />,
         children: [
             { path: '/', element: <Body /> },
-            { path: '/register-turf', element: <Turf_Landing /> },
-            { path: '/turfs', element: <Turf /> }, 
+            { path: '/register-turf', element: <Turf_Registration /> },
+            { path: '/turfs', element: <Turf /> },
             { path: '/turf/:id', element: <TurfDetails /> },
             { path: '/login', element: <UserLogin /> },
             { path: '/signup', element: <UserSignup /> },
             { path: '/profile', element: <Protected Component={UserProfile} /> },
             { path: '/turf-admin/login', element: <Turf_Login /> }
+
         ]
     },
     {
@@ -87,35 +112,16 @@ const appRouter = createBrowserRouter([
 
     {
         path: '/turf-admin',
-        element: <ApplayoutTurfAdmin />,
-        children: [
-            {
-                path: '/turf-admin',
-                element: (
-                    <Suspense >
-                        <Turf_Dashboard />
-                    </Suspense>
-                )
-            },
-            {
-                path: '/turf-admin/turf-requests',
-                element: (
-                    <Suspense >
-                        <Turf_Requests />
-                    </Suspense>
-                )
-            },
-            {
-                path: '/turf-admin/turfs',
-                element: (
-                    <Suspense >
-                        <Turfs_Accepted />
-                    </Suspense>
-                )
-            }
-        ]
-    }
+        element: (<Suspense><ApplayoutTurfAdmin /> </Suspense>),
+        children:
+            [
+                { path: '', element: <Turf_Dashboard /> },
+                { path: 'profile', element: <TurfPorfile /> },
+                { path: 'turf-requests', element: <Turf_Requests /> },
+                { path: 'turfs', element: <Turfs_Accepted /> }
+            ]
 
+    },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
