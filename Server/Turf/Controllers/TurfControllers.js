@@ -58,3 +58,10 @@ export const updateTurfDetails = (req, res, next) => {
     turfmodel.updateOne({ _id: req.user.id }, { $set: data }).then(() => res.status(200).json())
         .catch(err => res.status(500).json(err))
 }
+
+
+export const turfDetailsUser = (req, res, next) => {
+    const id = req.query.id
+    turfmodel.findById(id).then((data) => res.status(200).json(data))
+        .catch(err => res.status(500).json(err))
+}

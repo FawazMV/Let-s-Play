@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 
 const TurfCard = ({ _id, event, courtName, location, images }) => (
-   
+
     <article key={_id} className="flex flex-col  bg-gray-900">
-        <a rel="noopener noreferrer" href="#" aria-label="Te nulla oportere reprimique his dolorum">
-            <img alt="" className="object-cover w-full h-52 bg-gray-500" src={images[0].location} />
-        </a>
+        <img alt="" className="object-cover w-full h-52 bg-gray-500" src={images[0].location} />
         <div className="flex flex-col flex-1 p-6">
 
             <p className="text-xs tracking-wider uppercase  text-violet-400">{event}</p>

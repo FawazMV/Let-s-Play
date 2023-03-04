@@ -1,6 +1,6 @@
 import express from 'express'
 import { otpResend, otpValidation, registration, SendOtp, login } from './Controllers/Authcontroller.js'
-import { getAllTurfs, getLocationWiseTurf, getTurfRequests, reqAccept, reqCancel, ManageTurf, getAllTurfsAdmin, turfDetails, updateTurfDetails } from './Controllers/TurfControllers.js'
+import { getAllTurfs, getLocationWiseTurf, getTurfRequests, reqAccept, reqCancel, ManageTurf, getAllTurfsAdmin, turfDetails, updateTurfDetails, turfDetailsUser } from './Controllers/TurfControllers.js'
 import { authVeify } from './Helpers/JWT.js'
 import upload from './Helpers/multer.js'
 const router = express.Router()
@@ -38,6 +38,10 @@ router.patch('/turf-accept', reqAccept)
 router.delete('/turf-cancel', reqCancel)
 
 router.patch('/turf-manage', ManageTurf)
+
+
+
+router.get('/turf-details',turfDetailsUser)
 
 
 export default router 

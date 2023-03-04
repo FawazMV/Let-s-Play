@@ -76,13 +76,18 @@ const turfSchema = new mongoose.Schema
                 type: String
             },
             request: {
-                type: String,
-                default: 'Pending'
+                type: Boolean,
+                default: false
             },
             block: {
                 type: Boolean,
                 default: false
-            }
+            },
+            rating:{
+                type:Number,
+                default:0
+            },
+            reviews:{type:Array}
 
 
         },

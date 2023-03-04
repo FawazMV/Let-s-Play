@@ -38,3 +38,10 @@ export const updateTurfDetails = (data, token) => {
             .catch(err => reject(err?.response?.data?.message))
     })
 }
+
+export const getTurfDetails = (id) => {
+    return new Promise((resolve, reject) => {
+        axios.get('/turf-details', { params: { id } }).then(({ data }) => resolve(data))
+            .catch(err => reject(err?.response?.data?.message))
+    })
+}

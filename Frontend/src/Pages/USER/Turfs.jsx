@@ -30,7 +30,7 @@ const Turf = () => {
                     <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
                         {!turfs ? <ShimmerTurf /> : turfs?.length === 0 ? <div className="w-full h-screen fixed left-0 top-0 z-[-1] flex justify-center items-center bg-gray-800 text-2xl  font-black">🙁 No Turfs Available</div> :
                             turfs.map(turf => (
-                                <Link to={'/turf/'+turf._id}> <TurfCard {...turf} /></Link>
+                                <Link key={turf._id} to={'/turf/'+turf._id}> <TurfCard {...turf} /></Link>
                             ))
                         }
                     </div>

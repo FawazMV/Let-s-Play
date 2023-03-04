@@ -36,7 +36,7 @@ const SearchLoacation = ({ setTurfs }) => {
                     </svg>
                 </button>
             </span>
-            <input value={searchTerm} auto autoComplete="of" type="text" name="Search" onChange={textChange} placeholder="Location..." className=" py-2 pl-10 text-sm rounded-md w-full md:w-auto focus:outline-none bg-gray-800 text-gray-100 focus:bg-gray-900 focus:border-violet-400" />
+            <input value={searchTerm}  autoComplete="of" type="text" name="Search" onChange={textChange} placeholder="Location..." className=" py-2 pl-10 text-sm rounded-md w-full md:w-auto focus:outline-none bg-gray-800 text-gray-100 focus:bg-gray-900 focus:border-violet-400" />
 
             <ul className=" w-full absolute  bg-white rounded-md" >
                 {searchResults.map((result) => (
