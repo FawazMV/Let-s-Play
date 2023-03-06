@@ -12,19 +12,8 @@ const Title = () => (
 
 
 const Navbar = () => {
-  const dispatch = useDispatch()
-  useEffect(() => retriveToken(), [])
-  const retriveToken = () => {
-    const token = localStorage.getItem('token');
-    if (token && token != 'undefined') {
-      const decodedToken = jwtDecode(token);
-      const currentTime = Date.now() / 1000;
-      if (decodedToken.exp > currentTime) dispatch(setToken(token))
-    }
-  }
   const islogin = useSelector((store) => store.auth.token);
   const location = useLocation();
-  const navigate = useNavigate()
   const path = location.pathname;
   let Links = [
     { name: "HOME", link: "/" },
