@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 dotenv.config()
-export const authVeify = (req, res, next) => {
+const authVeify = (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) return res.status(401).json({ message: 'Authentication failed: no token provided.' });
     try {
@@ -12,3 +12,4 @@ export const authVeify = (req, res, next) => {
         return res.status(401).json({ message: 'Authentication failed: invalid token.' });
     }
 }
+export default authVeify

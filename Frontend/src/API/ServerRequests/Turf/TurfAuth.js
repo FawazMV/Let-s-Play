@@ -1,4 +1,4 @@
-import { Axiosturf } from "./Axiosinstance";
+import { Axiosturf } from "../../Axiosinstance";
 
 export const register = (formData) => {
     return new Promise((resolve, reject) => {

@@ -1,4 +1,4 @@
-import { Axiosturf as axios } from "./Axiosinstance.js";
+import { Axiosturf as axios } from "../../Axiosinstance";
 
 export const getTurfs = () => {
     return new Promise((resolve, reject) => {

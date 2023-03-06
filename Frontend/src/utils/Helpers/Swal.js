@@ -28,9 +28,17 @@ const Toast = Swal.mixin({
 })
 
 
-export const success = (state) => {
+export const successSwal = (state) => {
     Toast.fire({
         icon: 'success',
-        title: `Turf ${state} Successfully`
+        title: `${state}`
+    })
+}
+
+export const errorSwal = (state) => {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: state,
     })
 }

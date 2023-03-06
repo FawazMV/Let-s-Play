@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
-import { RequstAccept, TurfsRequsted, RequstCancel } from '../../../API/AdminApi';
-import { ConfirmSwal, success } from '../../../utils/Helpers/Swal';
+import { RequstAccept, TurfsRequsted, RequstCancel } from '../../../API/ServerRequests/Admin/AdminApi';
+import { ConfirmSwal, successSwal } from '../../../utils/Helpers/Swal';
 
 
 
@@ -16,7 +16,7 @@ const Turf_Management = ({ turfs, update }) => {
         const text = `A request from the court ${turf.courtName}!`
         if (await ConfirmSwal(text)) {
             RequstAccept(turf._id, 12345).then(() => {
-                success('Added')
+                successSwal('Turf Added Successfully')
                 update(turf._id)
             })
         }
@@ -26,7 +26,7 @@ const Turf_Management = ({ turfs, update }) => {
         const text = `Cancel the request from the ${turf.courtName}!`
         if (await ConfirmSwal(text)) {
             RequstCancel(turf._id, 12345).then(() => {
-                success('Removed')
+                successSwal('Turf removed successfully')
                 update(!abc)
             })
         }

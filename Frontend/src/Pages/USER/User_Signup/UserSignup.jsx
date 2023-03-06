@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { otpCall, otpVerification, registerUser } from '../../../API/UserAuth';
+import { otpCall, otpVerification, registerUser } from '../../../API/ServerRequests/User/UserAuth';
 import { useNavigate } from 'react-router-dom'
 import SignupPage from './Components/SignupPage';
+import { errorSwal } from '../../../utils/Helpers/Swal';
 
 const UserSignup = () => {
     const navigate = useNavigate()
@@ -10,18 +11,26 @@ const UserSignup = () => {
     const [otpErr, setOtpErr] = useState('')
     const [formData, setFormData] = useState({})
 
-    const otpCallApi = (data) => {
-        otpCall({ mobile: data.mobile, email: data.email }).then(() => {
+    const otpCallApi = async (data) => {
+        const result = await otpCall({ mobile: data.mobile, email: data.email })
+        if (result.status === 200) {
             setOtpPage(true)
             setFormData(data)
-        }).catch(err => setApiError(err))
+        } else if (result.status === 409) {
+            setApiError(result.data.message)
+        } else if (result.status === 500) errorSwal(result.data.error)
+
+
     }
-    const otpCheckApi = (mobile, otp ) => {
-        otpVerification({ mobile, otp }).then(async () => {
+    const otpCheckApi = async (mobile, otp) => {
+        const verify = await otpVerification({ mobile, otp })
+        if (verify.status === 200) {
             setOtpPage(false)
-            await registerUser(formData).catch(err => console.log(err))
-            navigate('/login')
-        }).catch(err => setOtpErr(err))
+            const data = await registerUser(formData)
+            if (data.status === 201) navigate('/login')
+            else if (data.status === 500) errorSwal(data.data.error)
+        } else if (verify.status === 400) setOtpErr(verify.data.message)
+        else if (verify.status === 500) errorSwal(verify.data.error)
     }
 
 

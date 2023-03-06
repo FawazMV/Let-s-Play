@@ -4,7 +4,7 @@ import LoginPage from '../../Components/LoginPage';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setTurfAuth } from "../../../utils/Redux/TurfAuthSlice";
-import { turfLogin } from '../../../API/TurfAuth';
+import { turfLogin } from '../../../API/ServerRequests/Turf/TurfAuth';
 
 const Turf_Login = () => {
     const title = 'Turf Dashboard'

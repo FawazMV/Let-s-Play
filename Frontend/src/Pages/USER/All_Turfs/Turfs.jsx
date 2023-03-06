@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getTurfs } from "../../../API/TurfsApi"
+import { getTurfs } from "../../../API/ServerRequests/Turf/TurfsApi"
 import SearchLoacation from "./Components/SearchLocation";
 import ShimmerTurf from "./Components/ShimmerTurf";
 import TurfCard from "./Components/TurfCard";

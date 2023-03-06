@@ -165,7 +165,7 @@ function ProductTabs({ reviews, bookings }) {
 }
 
 import { useParams } from 'react-router-dom';
-import { getTurfDetails } from '../../../API/TurfsApi';
+import { getTurfDetails } from '../../../API/ServerRequests/Turf/TurfsApi';
 const Bookings = ({ bookings }) => {
     const { openingTime, closingTime, Price, Holiday } = bookings;
     const timeSlotDuration = 60;

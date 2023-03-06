@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ManageTurf, TurfsAccepted } from '../../../API/AdminApi';
+import { ManageTurf, TurfsAccepted } from '../../../API/ServerRequests/Admin/AdminApi';
 import { ConfirmSwal } from '../../../utils/Helpers/Swal';
 
 const Turf_Management = ({ turfs, update }) => {

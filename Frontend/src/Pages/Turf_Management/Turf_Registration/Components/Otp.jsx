@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { OTP, Resend } from "../../../../API/TurfAuth";
+import { OTP, Resend } from "../../../../API/ServerRequests/Turf/TurfAuth";
 
 const OtpForm = ({ number, modal, Registration }) => {
     const [otp, setOTP] = useState(["", "", "", ""]);

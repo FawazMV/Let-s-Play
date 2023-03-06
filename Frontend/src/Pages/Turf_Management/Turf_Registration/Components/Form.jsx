@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { ValidateTurfRegistration } from "../../../../utils/Helpers/ValidateForm";
-import { EmailCheck, register } from '../../../../API/TurfAuth'
+import { EmailCheck, register } from '../../../../API/ServerRequests/Turf/TurfAuth'
 import ContactInfo from "./ContactInfo";
 import { TurfRegistrationDiv as FormDiv, initialState, errorState } from "../../../../utils/Helpers/Constats";
 import Otp from "./Otp";

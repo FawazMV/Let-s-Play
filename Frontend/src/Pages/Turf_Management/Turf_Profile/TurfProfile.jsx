@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
-import { getTurfProfile, updateTurfDetails } from "../../../API/TurfsApi.js";
+import { getTurfProfile, updateTurfDetails } from "../../../API/ServerRequests/Turf/TurfsApi";
 import { FormValidate } from "../../../utils/Helpers/ValidateForm";
-import { success } from "../../../utils/Helpers/Swal";
+import { successSwal } from "../../../utils/Helpers/Swal";
 
 const TurfPorfile = () => {
     const [details, setDetails] = useState({})
@@ -45,7 +45,7 @@ const TurfPorfile = () => {
         setErrors(err)
         if (Object.keys(err).length) return
         updateTurfDetails(editData, token).then(() => {
-            success('details updated')
+            successSwal('Turf details updated')
             setEditing(false)
             setUpdate(!update)
         }).catch(err => console.error(err))

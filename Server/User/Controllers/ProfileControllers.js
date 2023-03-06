@@ -1,15 +1,16 @@
 import usermodel from "../Models/User_Model.js"
 
-export const userDetails = (req, res, next) => {
-    usermodel.findById(req.user.id).then(data => res.status(200).json(data))
-        .catch(err => res.status(500).json(err))
+export const userDetails = async (req, res, next) => {
+    const data = await usermodel.findById(req.user.id).catch(err => next(err))
+    return res.status(200).json(data)
 }
 
 export const updateProfile = async (req, res, next) => {
-    const { username, email, mobile } = req.body
-    usermodel.updateOne({ _id: req.user.id }, { $set: { username, email, mobile } }).then((x)=>console.log(x))
-
-
-
-        
+    try {
+        const { username, email, mobile } = req.body
+        const result = await usermodel.updateOne({ _id: req.user.id }, { $set: { username, email, mobile } }).catch(err => next(err))
+        if (result) return res.status(200).json({ message: 'Profile updated successfully' })
+    } catch (error) {
+        return res.status(500).json({ error: "Internal Server Error !" })
+    }
 }

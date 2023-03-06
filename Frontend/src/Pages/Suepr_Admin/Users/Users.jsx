@@ -28,7 +28,7 @@ const UserList = ({ users }) => {
 
 
 import React from 'react';
-import { getUsers } from '../../../API/AdminApi';
+import { getUsers } from '../../../API/ServerRequests/Admin/AdminApi';
 
 
 const Users = () => {

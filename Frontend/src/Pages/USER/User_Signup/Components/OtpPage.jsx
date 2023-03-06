@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { otpResend } from "../../../../API/UserAuth";
+import { otpResend } from "../../../../API/ServerRequests/User/UserAuth";
+import { errorSwal } from "../../../../utils/Helpers/Swal";
 
 const OtpPage = ({ number, modal, otpErr, otpSubmit }) => {
     const [otp, setOTP] = useState(["", "", "", ""]);
@@ -18,6 +19,11 @@ const OtpPage = ({ number, modal, otpErr, otpSubmit }) => {
         const joinedOTP = otp.join("");
         otpSubmit(number, joinedOTP)
     };
+    const resendOtp = async () => {
+        const result = await otpResend(number)
+        if (result?.status === 200) setResend(false)
+        else if (result?.status === 500) errorSwal(data.data.error)
+    }
     return (
         <>
             <div className="w-full h-screen bg-black absolute opacity-50 top-0 left-0">
@@ -48,10 +54,7 @@ const OtpPage = ({ number, modal, otpErr, otpSubmit }) => {
                         </div>
 
                     </form>
-                    {resend ? <div className="text-blue-600 my-2 flex w-full cursor-pointer justify-evenly" onClick={() => {
-                        otpResend(number).then(() => setResend(false))
-                            .catch((err) => console.log(err))
-                    }}> <p>Resend OTP</p></div> : ''}
+                    {resend ? <div className="text-blue-600 my-2 flex w-full cursor-pointer justify-evenly" onClick={resendOtp}> <p>Resend OTP</p></div> : ''}
                     <div className="text-red-500 flex w-full justify-evenly"> <p>{otpErr}</p></div>
                 </div>
             </div>

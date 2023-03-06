@@ -1,4 +1,4 @@
-import { AxiosAdmin as axios } from "./Axiosinstance";
+import { AxiosAdmin as axios } from "../../Axiosinstance";
 
 export const TurfsRequsted = (token) => {
     return new Promise((resolve, reject) => {
