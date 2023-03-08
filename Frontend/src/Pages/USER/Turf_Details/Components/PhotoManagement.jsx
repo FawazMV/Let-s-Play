@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const PhotoManagement = ({ photos }) => {
     const [currentImage, setCurrentImage] = useState(0);
 

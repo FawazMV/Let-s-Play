@@ -1,6 +1,7 @@
 
 
 import React, { useEffect, useState } from 'react';
+import StarRating from './Components/StarRating'
 
 const Turfs = ({ courtName, location, locationDetails, rating, reviews, images, type, mobile, loction_Details, distric, event, openingTime, Price, closingTime, Holiday }) => {
 
