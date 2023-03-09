@@ -26,7 +26,7 @@ const ChangingTabs = ({ reviews, bookings }) => {
                     </button>
                 </nav>
             </div>
-            <div className="py-8 px-4">
+            <div className="py-8 px-4 bg-[#0f172af1]">
                 {activeTab === "details" && (
                     <div>
                         {/* <h2 className="text-lg font-medium text-gray-900">Book Your Spot</h2> */}

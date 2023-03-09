@@ -42,3 +42,23 @@ export const errorSwal = (state) => {
         text: state,
     })
 }
+
+export const bookingConfirm = ({date}) => {
+    Swal.fire({
+        title: 'Confirm Your Selection',
+        text: `Your choosed ${date} !`,
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        }
+    })
+}

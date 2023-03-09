@@ -12,3 +12,26 @@
 .star.checked {
     @apply text-yellow-500;
 }
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes slide {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: calc(100% - 8px);
+        /* account for the width of the element */
+    }
+}

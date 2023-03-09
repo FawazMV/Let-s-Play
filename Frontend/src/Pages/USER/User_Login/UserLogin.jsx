@@ -13,13 +13,13 @@ const UserLogin = () => {
     const [apiError, setApiError] = useState()
     const userLoginapicall = async (formData) => {
         const data = await userLogin(formData)
-        if (data.status === 401) setApiError(data.data.message)
-        else if (data.status === 200) {
+        if (data?.status === 401) setApiError(data.data.message)
+        else if (data?.status === 200) {
             const token = data.data.token
             dispatch(setToken(token))
             localStorage.setItem('token', token);
             navigate(-1)
-        } else if (data.status === 500) errorSwal(data.data.error)
+        } else if (data?.status === 500) errorSwal(data.data.error)
 
     }
     return <LoginPage title={title} signup='/signup' submit={userLoginapicall} apiError={apiError} />
