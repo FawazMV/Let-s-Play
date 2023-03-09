@@ -195,7 +195,7 @@ function Times({ date, startTime, endTime, price }) {
                     <div key={times} className="border-2 pl-5 flex justify-between rounded-md items-center mb-5 ">
                         <button onClick={(e) => displayInfo(e)}> {times} </button>
                         <p>₹ {price}</p>
-                        <button className='bg-green-500 h-full p-[10px] rounded-md' onClick={(e) => bookingConfirm()}>Book Now</button>
+                        <button className='bg-green-500 h-full p-[10px] rounded-md' onClick={(e) => bookingConfirm}>Book Now</button>
                     </div>
                 )
             })}
