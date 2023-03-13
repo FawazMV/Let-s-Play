@@ -43,22 +43,33 @@ export const errorSwal = (state) => {
     })
 }
 
-export const bookingConfirm = ({date}) => {
-    Swal.fire({
+export const bookingConfirm = async (date, time) => {
+    const result = await Swal.fire({
         title: 'Confirm Your Selection',
-        text: `Your choosed ${date} !`,
+        text: `You have selected the time slot ${time} on ${date} !`,
         icon: 'info',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Confirm'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-            )
-        }
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         Swal.fire(
+        //             'Deleted!',
+        //             'Your file has been deleted.',
+        //             'success'
+        //         )
+        //     }
     })
+    return result.isConfirmed
+}
+
+export const bookingSuccess = () => {
+    Swal.fire({
+        title: 'Booked!',
+        text: 'Your slot has been booked successfully.',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+    });
 }

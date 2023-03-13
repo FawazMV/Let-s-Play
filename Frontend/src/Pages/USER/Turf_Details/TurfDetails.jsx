@@ -12,7 +12,7 @@ const Turfs = ({ courtName, location, locationDetails, rating, reviews, images, 
                 <div className='px-11 xl:px-28 py-5 w-full'>
                     <div className="w-full flex justify-between">
                         <h2 className='font-extrabold text-3xl uppercase tracking-widest'>{courtName}</h2>
-                        <p className='font-bold flex mt-2'><p className='mr-1'>(</p> {event} <p className='ml-1'> )</p> </p>
+                        <div className='font-bold flex mt-2'><p className='mr-1'>(</p> {event} <p className='ml-1'> )</p> </div>
                     </div>
                     <div className='flex justify-between'>
                         <p className='mt-1 font-semibold'>{location} , {distric}</p>

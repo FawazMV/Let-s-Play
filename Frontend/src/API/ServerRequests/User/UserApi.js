@@ -23,3 +23,14 @@ export const updateProfile = async (data, token) => {
         return error?.response
     }
 }
+
+export const bookSlot = async (data, token) => {
+    try {
+        const response = await Axiosuser.post('/book/slot', data, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}

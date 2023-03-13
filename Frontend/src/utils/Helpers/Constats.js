@@ -39,5 +39,3 @@ export const errorState = {
     courtNameError: "", emailError: "", mobileError: "", passwordError: "",
     locationError: '', eventError: '', loction_DetailsError: "", imagesError: ""
 }
-
-export const mapboxToken = "pk.eyJ1IjoiZmF3YXptdiIsImEiOiJjbGU3bjRicGYwNzJpM3ZuYmQ4Njd1MzdqIn0.T0K_SA2RGYeL9XzOdBXLYg"

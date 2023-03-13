@@ -10,3 +10,7 @@ export const Axiosturf = Axios.create({
 export const AxiosAdmin = Axios.create({
     baseURL: 'http://localhost:7171'
 })  
+
+export const AxiosBookings = Axios.create({
+    baseURL: 'http://localhost:4321'
+})  

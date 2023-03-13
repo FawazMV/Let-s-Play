@@ -7,7 +7,7 @@ import connectDB from './Models/config.js'
 import authRoutes from './Routes/authRoutes.js'
 import requestRoutes from './Routes/requestRoutes.js'
 import profileRoutes from './Routes/profileRoutes.js'
-
+import bookingRoutes from './Routes/bookingRoutes.js'
 
 dotenv.config()
 const app = express()
@@ -21,6 +21,9 @@ app.use('/', authRoutes)
 app.use('/req-user', requestRoutes)
 
 app.use('/profile', profileRoutes)
+
+app.use('/book', bookingRoutes)
+
 
 app.use((err, req, res, next) => {
     if (err.code === 11000) {
