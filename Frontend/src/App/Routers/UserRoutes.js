@@ -7,12 +7,16 @@ import UserSignup from "../../Pages/USER/User_Signup/UserSignup"
 import UserProfile from '../../Pages/USER/User_Profile/UserProfile'
 import Turf_Login from '../../Pages/Turf_Management/Turf_Login/Turf_Login'
 import { ProtectTurfLogin } from "../RoutesProtect/TurfProtect.js"
+import SuccessPage from "../../Pages/USER/Success/SuccessPage"
+import Failed from "../../Pages/USER/Failed/Failed"
 
 const UserRoutes = [
     { path: '/', element: <LandingPage /> },
     { path: '/register-turf', element: <Turf_Registration /> },
     { path: '/turfs', element: <Turfs /> },
     { path: '/turf/:id', element: <TurfDetails /> },
+    { path: '/success/:id', element: <SuccessPage /> },
+    { path: '/failed/:id', element: <Failed /> },
     { path: '/login', element: <UserLogin /> },
     { path: '/signup', element: <UserSignup /> },
     { path: '/profile', element: <UserProfile /> },

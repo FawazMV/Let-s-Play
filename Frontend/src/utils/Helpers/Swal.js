@@ -64,12 +64,3 @@ export const bookingConfirm = async (date, time) => {
     return result.isConfirmed
 }
 
-export const bookingSuccess = () => {
-    Swal.fire({
-        title: 'Booked!',
-        text: 'Your slot has been booked successfully.',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1500,
-    });
-}

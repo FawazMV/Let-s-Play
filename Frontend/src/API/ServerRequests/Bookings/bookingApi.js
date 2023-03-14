@@ -10,9 +10,16 @@ export const getBookedSlots = async (date, id) => {
 }
 
 
-export const payementAction = async () => {
+export const payementAction = async (book_id) => {
     try {
-        const response = await axios.get('/payment');
+        const response = await axios.get('/payment', { params: { book_id } });
         return response;
-    } catch (error) { }
+    } catch (error) { return error?.response }
 };
+
+export const bookingSuccess = async (id) => {
+    try {
+        const response = await axios.patch('/booking-success', { id })
+        return response
+    } catch (error) { return error?.response }
+}

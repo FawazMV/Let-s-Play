@@ -2,11 +2,10 @@ import { Axiosbooking as axios } from "../Helpers/Axiosinstance.js";
 
 export const bookSlot = async (req, res, next) => {
     try {
-        const data = req.body
-        data.user = req.user.id
-        const result = await axios.post('/book-slot', data)
-        console.log(result)
-        if (result) return res.status(200).json({ message: 'Booking Successfull' });
+        const body = req.body
+        body.user = req.user.id
+        const { data } = await axios.post('/book-slot', body)
+        if (data) return res.status(200).json(data);
     }
     catch (error) {
         console.log(error)
