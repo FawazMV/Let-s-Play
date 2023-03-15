@@ -1,7 +1,7 @@
 import sendMail from "./nodemailer.js";
 
 export const successEmail = (data) => {
-    const { _id, date, time } = data;
+    const { _id, bookDate, time } = data;
     const { courtName } = data.turf;
     const { email, username } = data.user;
 
@@ -10,7 +10,7 @@ export const successEmail = (data) => {
 Thank you for booking a turf with us. We are pleased to confirm your reservation for the following details:
 
 Turf Name: ${courtName}
-Date: ${new Date(date).toLocaleDateString()}
+Date: ${new Date(bookDate).toLocaleDateString()}
 Time: ${time}
 Your booking confirmation number is: ${_id}
 

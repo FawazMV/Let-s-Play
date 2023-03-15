@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BookingCalendar from "./BookingCalendar";
+import BookingCalendar from "./BookingCalendar/BookingCalendar";
 
 const ChangingTabs = ({ reviews, bookings }) => {
     const [activeTab, setActiveTab] = useState("details");
@@ -29,8 +29,6 @@ const ChangingTabs = ({ reviews, bookings }) => {
             <div className="py-8 px-4 bg-[#0f172af1]">
                 {activeTab === "details" && (
                     <div>
-                        {/* <h2 className="text-lg font-medium text-gray-900">Book Your Spot</h2> */}
-                        {/* Add product details content here */}
                         <BookingCalendar bookings={bookings} />
                     </div>
                 )}
