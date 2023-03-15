@@ -1,11 +1,18 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { bookingFailed } from "../../../API/ServerRequests/Bookings/bookingApi"
+import { errorSwal } from "../../../utils/Helpers/Swal"
 
 const Failed = () => {
     const { id } = useParams()
-    // useEffect(() => {
-    //     bookingSuccess(id)
-    // }, [])
+    useEffect(() => {
+        updatefailed()
+    }, [])
+
+    const updatefailed = async () => {
+        const result = await bookingFailed(id)
+        if (!result?.status === 200) errorSwal(response.data.error)
+    }
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

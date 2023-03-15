@@ -14,15 +14,10 @@ const BookingCalendar = ({ bookings }) => {
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false)
     const isDateDisabled = ({ date }) => {
-        return date.getDay() === 3; // Disable Sundays and Saturdays
+        return date.getDay() === 0;
     };
     const today = new Date();
     const maxDate = new Date(today.getFullYear() + 1, today.getMonth() - 1, today.getDate());
-
-
-    const amPm = (hours) => (hours >= 12 ? "PM" : "AM");
-
-    const skipTimeSlots = ["11:00 AM to 12:00 PM", "3:00 PM to 4:00 PM"];
     const movingdiv = useRef(null);
     const move = () => {
         setShowTime(true)
@@ -92,23 +87,8 @@ function Times({ showTime, date, startTime, endTime, price, mDiv }) {
         timeSlots.push(time);
     }
 
-    const navigate = useNavigate()
-    const token = useSelector((store) => store?.auth?.token);
 
-    slotBooking = async (time) => {
 
-        // const result = await bookingConfirm(date.toLocaleDateString(), time)
-        // if (result) {
-        //     if (token) {
-        //         const response = await bookSlot({ date, time, turf: id }, token)
-        //         if (response?.status === 200) {
-        //             bookingSuccess()
-        //             setUpdate(!update)
-        //         } else errorSwal()
-        //     } else navigate('/login')
-
-        // }
-    }
     return (
         <>
             {showTime && (
@@ -125,7 +105,7 @@ function Times({ showTime, date, startTime, endTime, price, mDiv }) {
                         return (
                             <div key={index}>
                                 {!bookedTimes.includes(times) ?
-                                    <BookNow date={date} time={times} price={price} slotBooking={slotBooking} /> :
+                                    <BookNow date={date} time={times} price={price}  /> :
                                     <Booked times={times} price={price} />
                                 }
                             </div>
@@ -148,7 +128,7 @@ const Modal = ({ setModal, date, time }) => {
         <>
             <div className='fixed inset-x-0 sm:inset-0  transition'></div>
             <div className="fixed inset-0 transition-opacity">
-                <div className="absolute inset-0 bg-black opacity-60 transition"></div>
+                <div className="absolute inset-0 bg-black opacity-80 transition"></div>
             </div>
             <div className='w-full grid place-items-center'>
                 <div className='absolute  shadow-xl transform transition-all'>
@@ -175,12 +155,11 @@ const Modal = ({ setModal, date, time }) => {
     )
 }
 
-const BookNow = ({ slotBooking, time, date, price }) => {
+const BookNow = ({ time, date, price }) => {
     const [modal, setModal] = useState(false)
 
     const booking = () => {
         setModal(true)
-        slotBooking(time)
     }
     return (
         <> {modal && <Modal date={date} time={time} setModal={setModal} />}
@@ -218,6 +197,8 @@ const Payment = ({ setModal, date, time }) => {
                 if (result?.status === 200) {
                     setModal(false)
                     const news = await stripe.redirectToCheckout({ sessionId: result.data.response });
+                    console.log(news)
+                    alert('hi')
                 } else errorSwal()
             } else errorSwal()
         } else navigate('/login')

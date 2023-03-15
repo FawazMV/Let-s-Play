@@ -2,15 +2,7 @@ import mongoose from 'mongoose';
 import { paymentStripe } from '../Helpers/stripe.js';
 import bookingModel from '../Models/BookingModel.js';
 
-// app.post("/payment-intent", async (req, res) => {
-//     const amount = req.body
-//     //enter your checks whether the payment is correct
-//     const paymentIntent = await stripe.paymentIntents.create({
-//         amount,
-//         currency: "usd",
-//     });
-//     res.status(200).json(paymentIntent.client_secret);
-// })
+
 export const paymentIntent = async (req, res) => {
     try {
         const bookid = req.query.book_id

@@ -23,10 +23,10 @@ const bookingSchema = new mongoose.Schema(
             required: true
         },
         payment: {
-            type: Boolean,
+            type: String,
             required: true,
-            default: false
-        }
+            default: 'Pending'
+        },
     },
     {
         timestamps: true

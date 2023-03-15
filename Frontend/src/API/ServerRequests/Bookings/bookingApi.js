@@ -23,3 +23,10 @@ export const bookingSuccess = async (id) => {
         return response
     } catch (error) { return error?.response }
 }
+
+export const bookingFailed = async (id) => {
+    try {
+        const response = await axios.patch('/booking-failed', { id })
+        return response
+    } catch (error) { return error?.response }
+}

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { bookingSuccess } from "../../../API/ServerRequests/Bookings/bookingApi.js"
 
 const SuccessPage = () => {
-    const [details, setDetails] = useState({ bookDate: new Date() })
+    const [details, setDetails] = useState({})
     const { id } = useParams()
     useEffect(() => {
         updateSuccess()
@@ -15,7 +15,7 @@ const SuccessPage = () => {
             console.log(result.data)
             setDetails(result.data)
         }
-    } 
+    }
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-800">
             <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-2xl">
@@ -28,13 +28,13 @@ const SuccessPage = () => {
                     <p>Booked Date: <span className="font-bold">{new Date(details?.bookDate).toLocaleDateString()}</span></p>
                     <p>Booked Time: <span className="font-bold">{details.time}</span></p>
                 </div>
-                <p className="text-lg text-gray-800 mb-4 text-center">A receipt has been sent to <span className="font-bold">mvfawazmfz@gmail.com</span>.</p>
-                <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg block mx-auto">Go Back to Home</button>
-                <p className="text-gray-600 text-sm mt-2 text-center">Need to make changes? Contact us at <a href="mailto:info@yourturfbookingwebsite.com" className="text-green-500 hover:underline">info@yourturfbookingwebsite.com</a>.</p>
+                <p className="text-lg text-gray-800 mb-4 text-center">A receipt has been sent to <span className="font-bold">{details?.user?.email}</span>.</p>
+                <Link to={'/'}>   <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg block mx-auto">Go Back to Home</button></Link>
+                <p className="text-gray-600 text-sm mt-2 text-center">For More Informations -  Contact us at <a href="mailto:mvfawazmfz@gmail.com" className="text-green-500 hover:underline">mvfawazmfz@gmail.com</a>.</p>
             </div>
         </div>
     );
-   
+
 }
 
 export default SuccessPage

@@ -4,6 +4,7 @@ import Router from './Routes.js'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import connectDB from './Models/config.js'
+import sendMail from './Helpers/nodemailer.js'
 
 
 dotenv.config()
@@ -11,7 +12,7 @@ const app = express()
 app.use(express.json(), cors());
 
 
-app.use('/', Router)  
+app.use('/', Router)
 
 connectDB()
 mongoose.connection.once("open", () => {
