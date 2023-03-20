@@ -19,24 +19,27 @@ export const getLocationWiseTurfs = (distric) => {
     })
 }
 
-export const getTurfProfile = (token) => {
-    return new Promise((resolve, reject) => {
-        axios.get('/turf-profile', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then(({ data }) => resolve(data))
-            .catch(err => reject(err?.response?.data?.message))
-    })
+export const getTurfProfile = async (token) => {
+    try {
+        const response = await axios.get('/turf-profile', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+
 }
 
-export const updateTurfDetails = (data, token) => {
-    return new Promise((resolve, reject) => {
-        axios.patch('/update-turf-profile', data, {
+export const updateTurfDetails = async (data, token) => {
+    try {
+        const response = await axios.patch('/update-turf-profile', data, {
             headers: { Authorization: `Bearer ${token}` }
-        }).then(() => resolve())
-            .catch(err => reject(err?.response?.data?.message))
-    })
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
 }
 
 export const getTurfDetails = (id) => {
