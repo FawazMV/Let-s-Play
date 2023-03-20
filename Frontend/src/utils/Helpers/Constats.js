@@ -39,3 +39,7 @@ export const errorState = {
     courtNameError: "", emailError: "", mobileError: "", passwordError: "",
     locationError: '', eventError: '', loction_DetailsError: "", imagesError: ""
 }
+
+export const turfProfileInitial = {
+    courtName: '', loction_Details: '', Holiday: '', Price: '', enquiryNumber: '', openingTime: '', closingTime: '', images: []
+}

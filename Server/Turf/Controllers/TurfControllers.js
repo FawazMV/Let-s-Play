@@ -48,14 +48,14 @@ export const ManageTurf = (req, res, next) => {
 
 
 export const turfDetails = (req, res, next) => {
-    turfmodel.findById(req.user.id).then(data => res.status(200).json(data))
+    turfmodel.findById(req.user.id, { rating: 0, block: 0, password: 0, reviews: 0, request: 0 }).then(data => res.status(200).json(data))
         .catch(err => res.status(500).json(err))
 }
 
 export const updateTurfDetails = (req, res, next) => {
     console.log(req.body)
     const data = req.body
-    turfmodel.updateOne({ _id: req.user.id }, { $set: data }).then(() => res.status(200).json())
+    turfmodel.updateOne({ _id: req.user.id }, { $set: data }).then(() => res.status(200).json({ message: 'Turf Details Updated' }))
         .catch(err => res.status(500).json(err))
 }
 
