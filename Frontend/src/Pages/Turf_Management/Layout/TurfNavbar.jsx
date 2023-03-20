@@ -20,6 +20,10 @@ const TurfNavbar = () => {
             link: '/turf-admin/profile',
             text: 'Profile'
         },
+        {
+            link: '/turf-admin/bookings',
+            text: 'Bookings'
+        },
         // {
         //     link: '/admin/turf-requests',
         //     text: 'Turf Requests'
