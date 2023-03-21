@@ -21,7 +21,7 @@ const TurfPorfile = () => {
         const response = await getTurfProfile(token)
         if (response?.status === 200) {
             setDetails(response.data)
-        } else errorSwal(response.data.error)
+        } else errorSwal(response?.data?.error)
     }
 
 
