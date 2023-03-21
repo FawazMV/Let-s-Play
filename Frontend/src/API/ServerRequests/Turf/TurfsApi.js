@@ -48,3 +48,14 @@ export const getTurfDetails = (id) => {
             .catch(err => reject(err?.response?.data?.message))
     })
 }
+
+export const getBookedDetails = async (token) => {
+    try {
+        const response = await axios.get('/booked-details', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}
