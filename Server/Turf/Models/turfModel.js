@@ -4,27 +4,29 @@ const turfSchema = new mongoose.Schema
         {
             courtName: {
                 type: String,
-                trim: true
+                trim: true,
+                required: true
             },
             email: {
                 type: String,
                 unique: true,
-                trim: true
+                trim: true,
+                required: true
             },
             mobile: {
                 type: String,
                 require: true,
-                trim: true
+                trim: true,
+                required: true
             },
             password: {
                 type: String,
                 trim: true,
-                minlength: [6]
+                required: true
             },
             images: {
                 type: Array,
                 required: true
-
             },
             location: {
                 type: String,
