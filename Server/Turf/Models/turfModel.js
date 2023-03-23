@@ -45,14 +45,7 @@ const turfSchema = new mongoose.Schema
                 trim: true,
                 required: true
             },
-            WorkingTime: {
-                startinTime: {
-                    type: String,
-                },
-                endingTime: {
-                    type: String,
-                }
-            },
+            
             Holiday: {
                 type: String,
                 default: 'Sunday'

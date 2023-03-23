@@ -24,7 +24,7 @@ const UserProfile = () => {
     const editProfile = (e) => {
         setUser({
             ...user,
-             [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value,
         });
     }
     const update = async (setIsEdit) => {
@@ -37,26 +37,39 @@ const UserProfile = () => {
 
 
     return (
-        <div className='pt-16 xs:pt-20  lg:pt-3 min-h-screen bg-gray-800 flex justify-center items-center'>
-            <section className="sm:p-4 md:p-10 bg-gray-800 text-gray-50">
-                <form action="" className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
-                    <fieldset className="grid grid-cols-4 gap-6 p-14 rounded-md shadow-sm bg-gray-900">
-                        <ProfilePicture user={user} />
-                        <div className="space-y-2 col-span-full opacity-30 lg:hidden border-b-[1px] my-4" />
-                        <div className="grid grid-cols-6 gap-6 col-span-full lg:col-span-3">
-                            <ProfileDetails editProfile={editProfile} update={update} user={user} />
-                            <div className="col-span-full "> <hr className='mt-5 opacity-30 ' /></div>
-                            <PasswordUpdate />
-                            <LogoutButton />
-                        </div>
-                    </fieldset>
-
-                </form>
+        <div className='pt-16 xs:pt-20  lg:pt-20 min-h-screen bg-gray-800'>
+            <section className="mx-auto sm:p-4 container flex flex-col md:p-10 bg-gray-800 text-gray-50">
+                <fieldset className="grid grid-cols-4 gap-6 p-14 rounded-md shadow-sm bg-gray-900">
+                    <ProfilePicture user={user} />
+                    <div className="space-y-2 col-span-full opacity-30 lg:hidden border-b-[1px] my-4" />
+                    <div className="grid grid-cols-6 gap-6 col-span-full lg:col-span-3">
+                        <ProfileDetails editProfile={editProfile} update={update} user={user} />
+                        <div className="col-span-full "> <hr className='mt-5 opacity-30 ' /></div>
+                        <PasswordUpdate />
+                        <LogoutButton />
+                    </div>
+                </fieldset>
             </section>
-        </div>)
+            <BookingDetails />
+        </div>
+    )
 };
 
 export default UserProfile;
+
+
+const BookingDetails = () => {
+    return (
+        <div className='bg-gray-800'>
+            <section className="mx-auto sm:p-4 container flex flex-col md:p-10 bg-gray-800 text-gray-50">
+                <fieldset className="grid grid-cols-4 gap-6 p-14 rounded-md shadow-sm bg-gray-900">
+                    <span className='text-2xl font-bold'>Your Bookings</span>
+
+                </fieldset>
+            </section>
+        </div>
+    )
+}
 
 
 

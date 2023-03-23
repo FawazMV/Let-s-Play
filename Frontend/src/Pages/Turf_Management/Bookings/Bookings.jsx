@@ -5,7 +5,6 @@ import { getBookedDetails } from "../../../API/ServerRequests/Turf/TurfsApi"
 const Bookings = () => {
 
     const [bookings, setBookings] = useState([])
-
     const token = useSelector(store => store.turfAuth.token)
     useEffect(() => {
         token && getBookedTurfs()
@@ -47,8 +46,7 @@ const Bookings = () => {
                     <tbody>
                         {bookings.map(booking => (
                             <tr key={booking._id} className="border-b border-gray-700">
-
-                                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white bg-gray-800">
+                                <th scope="row" className={`px-6 py-4 font-medium whitespace-nowrap text-white bg-gray-800 ${new Date(booking.bookDate).getDate() < new Date().getDate() - 1 ? 'opacity-50' : ''}`}>
                                     {booking.user.username}
                                 </th>
                                 <td className="px-6 py-4">
