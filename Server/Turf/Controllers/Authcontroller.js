@@ -12,7 +12,7 @@ export const registration = async (req, res, next) => {
             courtName, email, mobile, location, distric, state, event, loction_Details,
             password: hashedPassword, images: req.files
         });
-        newUser.save();
+        await newUser.save();
         return res.status(200).json({ message: 'Registration successfull' })
     }
     catch (err) {

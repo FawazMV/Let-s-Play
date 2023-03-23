@@ -1,7 +1,7 @@
 import express from 'express';
 import { bookSlot, bookedSlot, bookingSuccess, bookingFailed } from './Controllers/bookingControllers.js';
 import { paymentIntent } from './Controllers/paymentControllers.js';
-import { bookingDetails } from './Controllers/requestControllers.js';
+import { bookingDetails, userBookings } from './Controllers/requestControllers.js';
 const router = express.Router()
 
 router.get('/payment', paymentIntent)
@@ -21,5 +21,9 @@ router.patch('/booking-failed', bookingFailed)
 
 router.get('/turf-booked-details', bookingDetails)
 
+
+//user requests
+
+router.get('/user-bookings', userBookings)
 
 export default router  

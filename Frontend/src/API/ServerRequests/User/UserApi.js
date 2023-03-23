@@ -34,3 +34,14 @@ export const bookSlot = async (data, token) => {
         return error?.response
     }
 }
+
+export const getUserBookings = async ({token}) => {
+    try {
+        const response = await Axiosuser.get('/book/details',{
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}

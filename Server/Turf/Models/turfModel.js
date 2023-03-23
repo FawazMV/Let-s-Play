@@ -23,6 +23,7 @@ const turfSchema = new mongoose.Schema
             },
             images: {
                 type: Array,
+                required: true
 
             },
             location: {

@@ -12,3 +12,13 @@ export const bookSlot = async (req, res, next) => {
         return res.status(500).json({ error: "Internal Server Error !" })
     }
 }
+
+export const userBookings = async (req,res) => {
+    try {
+        const { data } = await axios.get('/user-bookings', { params: { user: req.user.id } })
+        if (data) return res.status(200).json(data);
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: "Internal Server Error !" })
+    }
+}
