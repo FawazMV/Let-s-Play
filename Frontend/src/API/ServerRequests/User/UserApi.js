@@ -35,9 +35,20 @@ export const bookSlot = async (data, token) => {
     }
 }
 
-export const getUserBookings = async ({token}) => {
+export const getUserBookings = async (token) => {
     try {
-        const response = await Axiosuser.get('/book/details',{
+        const response = await Axiosuser.get('/book/details', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}
+
+export const reviewSubmit = (token, data) => {
+    try {
+        const response = await Axiosuser.post('/user/review-submit', { data }, {
             headers: { Authorization: `Bearer ${token}` }
         })
         return response

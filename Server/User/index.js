@@ -8,6 +8,7 @@ import authRoutes from './Routes/authRoutes.js'
 import requestRoutes from './Routes/requestRoutes.js'
 import profileRoutes from './Routes/profileRoutes.js'
 import bookingRoutes from './Routes/bookingRoutes.js'
+import otherRoutes from './Routes/otherRoutes.js'
 
 dotenv.config()
 const app = express()
@@ -23,6 +24,8 @@ app.use('/req-user', requestRoutes)
 app.use('/profile', profileRoutes)
 
 app.use('/book', bookingRoutes)
+
+app.use('/user', otherRoutes)
 
 
 app.use((err, req, res, next) => {
