@@ -14,3 +14,7 @@ export const AxiosAdmin = Axios.create({
 export const AxiosBookings = Axios.create({
     baseURL: 'http://localhost:4321'
 })  
+
+export const AxiosReview = Axios.create({
+    baseURL: 'http://localhost:9999'
+})  

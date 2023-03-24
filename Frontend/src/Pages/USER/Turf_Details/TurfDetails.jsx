@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import StarRating from './Components/StarRating'
 
-const Turfs = ({ courtName, location, rating, reviews, images, type, mobile, loction_Details, distric, event, openingTime, Price, closingTime, Holiday }) => {
+const Turfs = ({ courtName, location, rating, reviews, images, mobile, loction_Details, distric, event, openingTime, Price, closingTime, Holiday }) => {
 
     return (
         <>

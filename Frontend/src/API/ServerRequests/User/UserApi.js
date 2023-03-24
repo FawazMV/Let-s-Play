@@ -46,9 +46,9 @@ export const getUserBookings = async (token) => {
     }
 }
 
-export const reviewSubmit = (token, data) => {
+export const reviewSubmit = async (token, data) => {
     try {
-        const response = await Axiosuser.post('/user/review-submit', { data }, {
+        const response = await Axiosuser.post('/user/review-submit', data, {
             headers: { Authorization: `Bearer ${token}` }
         })
         return response

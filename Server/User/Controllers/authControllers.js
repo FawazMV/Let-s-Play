@@ -26,7 +26,7 @@ export const registerUser = async (req, res) => {
             username, email, mobile,
             password: hashedPassword,
         });
-        newUser.save();
+        await newUser.save();
         return res.status(201).json({ message: "User created" });
     }
     catch (err) {
@@ -69,7 +69,7 @@ export const otpResend = (req, res, next) => {
         otpcallin(req.body.mobile)
         return res.status(200).json({ message: `OTP send to ${req.body.mobile}` });
     }
-    catch(error){
+    catch (error) {
         return res.status(500).json({ error: "Internal Server Error !" })
     }
 }

@@ -29,7 +29,7 @@ const StarRating = ({ rating }) => {
                     </svg>
                 </span>
             ))}
-            <span className="ml-2 text-sm">{rating}</span>
+            <span className="ml-2 text-sm">{rating.toFixed(1)}</span>
         </div>
     );
 };
