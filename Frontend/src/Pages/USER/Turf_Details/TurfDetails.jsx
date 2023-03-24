@@ -3,11 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import StarRating from './Components/StarRating'
 
-const Turfs = ({ courtName, location, locationDetails, rating, reviews, images, type, mobile, loction_Details, distric, event, openingTime, Price, closingTime, Holiday }) => {
+const Turfs = ({ courtName, location, rating, reviews, images, type, mobile, loction_Details, distric, event, openingTime, Price, closingTime, Holiday }) => {
 
     return (
         <>
-            <div className="bg-slate-800  w-full sm:px-10 md:px-32 lg:px-60 xl:px-80 py-6 mb-4">
+            <div className="bg-slate-800 min-h-screen  w-full sm:px-10 md:px-32 lg:px-60 xl:px-80 py-6">
                 <PhotoManagement photos={images} />
                 <div className='px-11 xl:px-28 py-5 w-full'>
                     <div className="w-full flex justify-between">
@@ -29,13 +29,10 @@ const Turfs = ({ courtName, location, locationDetails, rating, reviews, images, 
                             </svg>
                             {mobile}
                         </p>
-
                     </div>
-
-
                 </div>
             </div>
-            <div className='bg-slate-800  w-full px-3 sm:px-5 md:px-20 lg:px-44 xl:px-[200px] py-6 mb-4'>
+            <div className='bg-slate-800  w-full px-3 sm:px-5 md:px-20 lg:px-44 xl:px-[200px] md:py-6 mb-4'>
                 <ChangingTabs bookings={{ openingTime, Price, closingTime, Holiday }} reviews={reviews} />
             </div>
         </>
@@ -52,7 +49,7 @@ const Turfs = ({ courtName, location, locationDetails, rating, reviews, images, 
 
 
 
-;
+    ;
 
 
 import { useParams } from 'react-router-dom';

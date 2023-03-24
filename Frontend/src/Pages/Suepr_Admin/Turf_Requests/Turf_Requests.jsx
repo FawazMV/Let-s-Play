@@ -27,7 +27,7 @@ const Turf_Management = ({ turfs, update }) => {
         if (await ConfirmSwal(text)) {
             RequstCancel(turf._id, 12345).then(() => {
                 successSwal('Turf removed successfully')
-                update(!abc)
+                update(turf._id)
             })
         }
     }
@@ -82,7 +82,7 @@ const Turf_Management = ({ turfs, update }) => {
                                             <td className="absolute bg-white shadow-md py-4 z-10 px-8  left-1/4 transform -translate-x-1/2 -translate-y-1/2">
                                                 <h2 className="text-lg font-bold mb-2">{selectedTurf.courtName}</h2>
                                                 <div className='flex justify-around'>
-                                                    <img src={selectedTurf.images[0].location} alt="Turf" className="mb-2 h-10" />
+                                                    <img src={selectedTurf.images[0]?.location} alt="Turf" className="mb-2 h-10" />
                                                     <img src={selectedTurf.images[1]?.location} alt="Turf" className="mb-2 h-10" />
                                                 </div>
                                                 <p className='text-sm'>{selectedTurf.loction_Details}</p>

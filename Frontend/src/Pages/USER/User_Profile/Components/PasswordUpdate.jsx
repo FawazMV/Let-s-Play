@@ -11,7 +11,7 @@ const PasswordUpdate = () => {
                 <input id="confirmpassword" type="password" placeholder="Confirm Passowrd" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700" />
             </div>
             <div className="col-span-full flex justify-end sm:col-span-2">
-                <button type="button" className="my-[25px] px-14 sm:px-7 py-[9px] font-semibold text-sm border rounded border-gray-100 hover:bg-gray-100 hover:text-gray-900 transition duration-300  text-gray-100">Update Passowrd</button>
+                <button type="button" className="my-[25px]  py-[9px] w-full  justify-center font-semibold text-sm border rounded border-gray-100 hover:bg-gray-100 hover:text-gray-900 transition duration-300  text-gray-100">Update Passowrd</button>
             </div>
         </>
     )
