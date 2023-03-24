@@ -65,3 +65,13 @@ export const turfDetailsUser = (req, res, next) => {
     turfmodel.findById(id).then((data) => res.status(200).json(data))
         .catch(err => res.status(500).json(err))
 }
+
+export const updateRating = async (req, res, next) => {
+    try {
+        await turfmodel.updateOne({ _id: req.body.id }, { $set: { rating: req.body.rating } })
+        return res.status(200).json({ message: 'rating updated successfully' })
+    }
+    catch (err) {
+        return res.status(500).json({ message: 'Internal Server Error' })
+    }
+}
