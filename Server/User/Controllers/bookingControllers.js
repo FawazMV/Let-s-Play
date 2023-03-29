@@ -8,7 +8,7 @@ export const bookSlot = async (req, res, next) => {
         if (data) return res.status(200).json(data);
     }
     catch (error) {
-        console.log(error)
+        // console.log(error)
         return res.status(500).json({ error: "Internal Server Error !" })
     }
 }

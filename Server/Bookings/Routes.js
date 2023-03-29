@@ -1,5 +1,6 @@
 import express from 'express';
 import { bookSlot, bookedSlot, bookingSuccess, bookingFailed } from './Controllers/bookingControllers.js';
+import { turfWiseEarningReport } from './Controllers/earningReportControllers.js';
 import { paymentIntent } from './Controllers/paymentControllers.js';
 import { bookingDetails, userBookings } from './Controllers/requestControllers.js';
 const router = express.Router()
@@ -21,7 +22,7 @@ router.patch('/booking-failed', bookingFailed)
 
 router.get('/turf-booked-details', bookingDetails)
 
-
+router.get('/collection-report', turfWiseEarningReport)
 //user requests
 
 router.get('/user-bookings', userBookings)

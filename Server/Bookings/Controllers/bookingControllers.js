@@ -6,11 +6,11 @@ import paymentModel from "../Models/PaymentDetails.js";
 export const bookSlot = async (req, res, next) => {
     try {
         const { user, turf, date, time } = req.body
+        console.log(date)
         const newBooking = new bookingModel({
             bookDate: date, time, turf, user
         });
         const result = await newBooking.save();
-        console.log(result);
         return res.status(200).json({ message: 'Booking saved successfully', booking_id: result._id })
     } catch (error) {
         return res.status(500).json({ error: 'internal server error' })
@@ -37,7 +37,7 @@ export const bookingSuccess = async (req, res, next) => {
             { $project: { 'turf._id': 1, payment: 1, 'turf.courtName': 1, 'turf.Price': 1, 'user.email': 1, 'user.username': 1, bookDate: 1, time: 1 } },
         ])
         if (result.length) {
-            await bookingModel.updateOne({ _id: req.body.id }, { $set: { payment: 'Success' } })
+            await bookingModel.updateOne({ _id: req.body.id }, { $set: { payment: 'Success' }, rate: result[0].turf.Price })
             const turf = await paymentModel.findOneAndUpdate({ turf: result[0].turf._id }, { $inc: { balance: result[0].turf.Price } })
             if (!turf) {
                 const newOne = new paymentModel({ turf: result[0].turf._id, balance: result[0].turf.Price });
