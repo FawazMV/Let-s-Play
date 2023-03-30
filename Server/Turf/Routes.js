@@ -1,6 +1,6 @@
 import express from 'express'
 import { otpResend, otpValidation, registration, SendOtp, login } from './Controllers/Authcontroller.js'
-import { bookedTurfs } from './Controllers/BookingControllers.js'
+import { bookedTurfs, earningReport } from './Controllers/BookingControllers.js'
 import { getAllTurfs, getLocationWiseTurf, getTurfRequests, reqAccept, reqCancel, ManageTurf, getAllTurfsAdmin, turfDetails, updateTurfDetails, turfDetailsUser, updateRating } from './Controllers/TurfControllers.js'
 import { authVeify } from './Helpers/JWT.js'
 import upload from './Helpers/multer.js'
@@ -52,6 +52,7 @@ router.get('/turf-details', turfDetailsUser)
 
 router.get('/booked-details', authVeify, bookedTurfs)
 
+router.get('/earning-report', authVeify, earningReport)
 
 //reviewupdatae
 

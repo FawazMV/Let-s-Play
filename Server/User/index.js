@@ -32,9 +32,9 @@ app.use((err, req, res, next) => {
     if (err.code === 11000) {
         return res.status(500).json({ error: 'Duplicate found' })
     } else if (err.name === "ValidationError") {
-        return res.json({ error: err.message })
+        return res.status(500).json({ error: err.message })
     }
-    else return res.json({ error: "Internal error", err: err })
+    else return res.status(500).json({ error: "Internal server error", err: err })
 
 })
 

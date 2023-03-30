@@ -12,7 +12,6 @@ const BookingDetails = ({token}) => {
     const getUserBookingDetails = async () => {
         const response = await getUserBookings(token)
         if (response?.status === 200) setData(response.data)
-        console.log(response.data)
     }
 
     return (

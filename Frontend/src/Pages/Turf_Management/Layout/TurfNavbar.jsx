@@ -24,10 +24,11 @@ const TurfNavbar = () => {
             link: '/turf-admin/bookings',
             text: 'Bookings'
         },
-        // {
-        //     link: '/admin/turf-requests',
-        //     text: 'Turf Requests'
-        // }, {
+        {
+            link: '/turf-admin/earning-report',
+            text: 'Earning Reports'
+        }
+        // , {
         //     link: '/admin/turfs',
         //     text: 'Turfs'
         // },

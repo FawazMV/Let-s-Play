@@ -59,3 +59,15 @@ export const getBookedDetails = async (token) => {
         return error?.response
     }
 }
+
+export const getEarningReport = async (token) => {
+    try {
+        const response = await axios.get('/earning-report', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}
+

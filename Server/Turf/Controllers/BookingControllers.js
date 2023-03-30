@@ -6,6 +6,17 @@ export const bookedTurfs = async (req, res, next) => {
         if (response.status === 200) return res.status(200).json(response.data)
     } catch (error) {
         console.warn(error)
+        return res.status(500).json({ error: 'Internal Server Error' })
+    }
+}
+
+export const earningReport = async (req, res) => {
+    try {
+        const response = await axios.get('/collection-report', { params: { turf: req.user.id } })
+        if (response.status === 200) return res.status(200).json(response.data)
+    }
+    catch (error) {
+        console.warn(error)
         return res.status(500).json({ message: 'Internal Server Error' })
     }
 }

@@ -17,7 +17,7 @@ export const login = async (req, res, next) => {
     }
 }
 
-export const registerUser = async (req, res) => {
+export const registerUser = async (req, res, next) => {
     try {
         const { username, password, email, mobile } = req.body
         const salt = await bcrypt.genSalt();
@@ -30,7 +30,8 @@ export const registerUser = async (req, res) => {
         return res.status(201).json({ message: "User created" });
     }
     catch (err) {
-        return res.status(500).json({ error: "Internal Server Error !" })
+        next(err);
+        // return res.status(500).json({ error: "Internal Server Error !" })
     }
 }
 
