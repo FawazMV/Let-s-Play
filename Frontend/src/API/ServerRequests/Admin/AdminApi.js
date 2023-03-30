@@ -45,7 +45,16 @@ export const ManageTurf = (id, status, token) => {
 export const getUsers = (token) => {
     return new Promise((resolve, reject) => {
         axios.get('/show-users', { headers: { Authorization: `Bearer ${token}` } })
-            .then(({data}) => resolve(data))
+            .then(({ data }) => resolve(data))
             .catch((err) => reject(err))
     })
-} 
+}
+
+export const getTurfsReport = async (token) => {
+    try {
+        const response = await axios.get('/all-booking-report', { headers: { Authorization: `Bearer ${token}` } })
+        return response
+    } catch (error) {
+        return error.response
+    }
+}

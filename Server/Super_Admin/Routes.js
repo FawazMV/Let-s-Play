@@ -1,4 +1,5 @@
 import express from 'express';
+import { getReports } from './Controllers/bookingControllers.js';
 import { login } from './Controllers/login.js';
 import { getTurfRequests, reqAccept, getTurfsAccepted, reqCancel, ManageTurf } from './Controllers/TurfControllers.js';
 import { getUsers } from './Controllers/UserControllers.js';
@@ -20,7 +21,14 @@ router.patch('/turf-manage', ManageTurf)
 
 
 
+
 router.get('/show-users', getUsers)
+
+
+
+//booking request
+
+router.get('/all-booking-report', getReports)
 
 
 export default router   

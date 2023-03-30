@@ -1,6 +1,6 @@
 import express from 'express';
 import { bookSlot, bookedSlot, bookingSuccess, bookingFailed } from './Controllers/bookingControllers.js';
-import { turfWiseEarningReport } from './Controllers/earningReportControllers.js';
+import { allReports, turfWiseEarningReport } from './Controllers/earningReportControllers.js';
 import { paymentIntent } from './Controllers/paymentControllers.js';
 import { bookingDetails, userBookings } from './Controllers/requestControllers.js';
 const router = express.Router()
@@ -27,4 +27,9 @@ router.get('/collection-report', turfWiseEarningReport)
 
 router.get('/user-bookings', userBookings)
 
+
+
+
+//superAdminrequests
+router.get('/all-reports', allReports)
 export default router  

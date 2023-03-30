@@ -19,10 +19,16 @@ const AdminNavbar = () => {
         {
             link: '/admin/turf-requests',
             text: 'Turf Requests'
-        }, {
+        },
+        {
             link: '/admin/turfs',
             text: 'Turfs'
         },
+        {
+            link: '/admin/all-reports',
+            text: 'Reports'
+        },
+
 
     ]
 

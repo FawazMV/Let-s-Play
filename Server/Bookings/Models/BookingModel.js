@@ -27,6 +27,9 @@ const bookingSchema = new mongoose.Schema(
             required: true,
             default: 'Pending'
         },
+        rate:{
+            type: Number,
+        }
     },
     {
         timestamps: true
