@@ -71,3 +71,13 @@ export const getEarningReport = async (token) => {
     }
 }
 
+export const getPaymentDetails = async (token) => {
+    try {
+        const response = await axios.get('/profit-details', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}

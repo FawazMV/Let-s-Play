@@ -12,11 +12,20 @@ const paymentSchema = new mongoose.Schema(
             required: true,
             default: 0
         },
-        withdrawn: {
-            type: Number,
-            required: true,
-            default: 0
-        }
+        withdrawn: [
+            {
+                amount: {
+                    type: Number,
+                    required: true,
+                },
+                date: {
+                    type: Number,
+                    default: Date.now(),
+                    required: true,
+                }
+
+            }
+        ]
     },
     {
         timestamps: true

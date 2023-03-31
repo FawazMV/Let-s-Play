@@ -32,25 +32,27 @@ const TurfPorfile = () => {
         if (Object.keys(err).length) return
         const response = await updateTurfDetails(details, token)
         if (response?.status === 200) {
-            successSwal(response.data.message)
+            successSwal(response?.data?.message)
             setIsEdit(false)
-        } else errorSwal(response.data.error)
+        } else errorSwal(response?.data?.error)
     };
 
     return (
-        <div className="container mx-auto pt-28 p-4">
-            <div className="mb-4 flex justify-center items-center">
-                <h1 className="text-4xl text-gray-700 font-semibold">{details?.courtName}</h1>
-            </div>
-            <DefaultDetails {...details} />
-            <div className="mt-4">
-                <h2 className="text-lg font-semibold mb-2">Additional Details</h2>
-                <div className="bg-white p-4 rounded shadow">
-                    <FormDetails errors={errors} isEdit={isEdit} details={details} setDetails={setDetails} />
-                    <EditButton isEdit={isEdit} setIsEdit={setIsEdit} handleUpdate={handleUpdate} />
+        <div className="bg-slate-800 text-gray-300">
+            <div className="container  mx-auto pt-28  p-4">
+                <div className="mb-4 flex justify-center items-center">
+                    <h1 className="text-4xl text-gray-700 font-semibold">{details?.courtName}</h1>
                 </div>
-            </div>
-        </div >
+                <DefaultDetails {...details} />
+                <div className="mt-4">
+                    <h2 className="text-lg font-semibold mb-2">Additional Details</h2>
+                    <div className="bg-white p-4 rounded shadow">
+                        <FormDetails errors={errors} isEdit={isEdit} details={details} setDetails={setDetails} />
+                        <EditButton isEdit={isEdit} setIsEdit={setIsEdit} handleUpdate={handleUpdate} />
+                    </div>
+                </div>
+            </div >
+        </div>
     );
 
 

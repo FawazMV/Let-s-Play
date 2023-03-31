@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bookingModel from "../Models/BookingModel.js";
+import paymentModel from "../Models/PaymentDetails.js";
 
 export const turfWiseEarningReport = async (req, res) => {
     try {
@@ -41,5 +42,22 @@ export const allReports = async (req, res, next) => {
         return res.status(200).json(report)
     } catch (error) {
         console.log(error)
+    }
+}
+
+
+
+export const getPaymentDetails = async (req, res) => {
+    try {
+        const result = await paymentModel.aggregate([
+            { $match: { turf: new mongoose.Types.ObjectId(req.query.turf) } },
+            { $unwind: "$withdrawn" },
+            { $group: { _id: null, totalWithdrawn: { $sum: "$withdrawn.amount" }, balance: { $first: "$balance" } } },
+            { $project: { _id: 0, balance: 1, totalWithdrawn: 1 } }
+        ])
+        return res.status(200).json(result[0])
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'Internal Server Error', err: error })
     }
 }

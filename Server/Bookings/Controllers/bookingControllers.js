@@ -38,9 +38,9 @@ export const bookingSuccess = async (req, res, next) => {
         ])
         if (result.length) {
             await bookingModel.updateOne({ _id: req.body.id }, { $set: { payment: 'Success' }, rate: result[0].turf.Price })
-            const turf = await paymentModel.findOneAndUpdate({ turf: result[0].turf._id }, { $inc: { balance: result[0].turf.Price } })
+            const turf = await paymentModel.findOneAndUpdate({ turf: result[0].turf._id }, { $inc: { balance: result[0].turf.Price - (result[0].turf.Price * 5 / 100) } })
             if (!turf) {
-                const newOne = new paymentModel({ turf: result[0].turf._id, balance: result[0].turf.Price });
+                const newOne = new paymentModel({ turf: result[0].turf._id, balance: result[0].turf.Price - (result[0].turf.Price * 5 / 100) });
                 newOne.save()
             }
             successEmail(result[0])
