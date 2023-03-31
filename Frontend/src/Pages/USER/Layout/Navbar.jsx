@@ -19,8 +19,8 @@ const Navbar = () => {
     { name: "HOME", link: "/" },
     { name: "TURF BOOKING", link: "/turfs" },
     { name: "TURF REGISTRATION", link: "/register-turf" },
-    { name: "BLOG'S", link: "/" },
-    { name: "CONTACT", link: "/" },
+    // { name: "BLOG'S", link: "/" },
+    { name: "CONTACT", link: "/contact-us" },
   ];
   let [open, setOpen] = useState(false);
   return (

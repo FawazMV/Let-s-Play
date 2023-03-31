@@ -9,6 +9,7 @@ import Turf_Login from '../../Pages/Turf_Management/Turf_Login/Turf_Login'
 import { ProtectTurfLogin } from "../RoutesProtect/TurfProtect.js"
 import SuccessPage from "../../Pages/USER/Success/SuccessPage"
 import Failed from "../../Pages/USER/Failed/Failed"
+import ContactUs from "../../Pages/USER/ContactUs/ContactUs"
 
 const UserRoutes = [
     { path: '/', element: <LandingPage /> },
@@ -20,6 +21,7 @@ const UserRoutes = [
     { path: '/login', element: <UserLogin /> },
     { path: '/signup', element: <UserSignup /> },
     { path: '/profile', element: <UserProfile /> },
+    { path: '/contact-us', element: <ContactUs /> },
     { path: '/turf-admin/login', element: <ProtectTurfLogin Component={Turf_Login} /> }
 ]
 
