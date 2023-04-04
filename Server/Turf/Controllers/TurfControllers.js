@@ -48,7 +48,7 @@ export const ManageTurf = (req, res, next) => {
 
 
 export const turfDetails = (req, res, next) => {
-    turfmodel.findById(req.user.id, { rating: 0, block: 0, password: 0, reviews: 0, request: 0 }).then(data => res.status(200).json(data))
+    turfmodel.findById(req.user.id, { rating: 0, block: 0, password: 0, reviews: 0, request: 0, __v:0 }).then(data => res.status(200).json(data))
         .catch(err => res.status(500).json(err))
 }
 

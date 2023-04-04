@@ -27,7 +27,7 @@ const Turf_Dashboard = () => {
                             </svg>
                         </div>
                         <div className="flex flex-col justify-center items-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">₹ {balance+profit}</p>
+                            <p className="text-3xl font-semibold leading-none">₹ {balance + profit}</p>
                             <p className="uppercase">Total Profit</p>
                         </div>
                     </div>
@@ -37,9 +37,125 @@ const Turf_Dashboard = () => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
+
+
+
     )
 }
 
 export default Turf_Dashboard
 
+
+
+
+const PaymentForm = () => {
+    const [amount, setAmount] = useState("");
+    const [currency, setCurrency] = useState("USD");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [cardNumber, setCardNumber] = useState("");
+    const [expMonth, setExpMonth] = useState("");
+    const [expYear, setExpYear] = useState("");
+    const [cvc, setCvc] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Submit form to server using Stripe API
+        try {
+            const response = await axios.post('/api/stripe/card-transfer', {
+                cardNumber,
+                expiryMonth,
+                expiryYear,
+                cvv,
+                amount,
+            });
+            console.log(response.data);
+            // Clear form fields
+            setCardNumber('');
+            setExpiryMonth('');
+            setExpiryYear('');
+            setCvv('');
+            setAmount('');
+        } catch (error) {
+            console.log(error.response.data);
+        }
+    };
+    return (
+        <div className='flex'>
+
+            <div className="bg-gray-900 text-white p-6 rounded-lg">
+                <form onSubmit={handleSubmit}>
+                    <div className="flex flex-col mb-4">
+                        <label htmlFor="amount" className="mb-1">
+                            Amount
+                        </label>
+                        <input
+                            type="number"
+                            id="amount"
+                            value={amount}
+                            onChange={(e) => setAmount(e.target.value)}
+                            className="p-2 bg-gray-800 rounded-lg"
+                            required
+                        />
+                    </div>
+                    <div className="flex flex-col mb-4">
+                        <label htmlFor="currency" className="mb-1">
+                            Currency
+                        </label>
+                        <select
+                            id="currency"
+                            value={currency}
+                            onChange={(e) => setCurrency(e.target.value)}
+                            className="p-2 bg-gray-800 rounded-lg"
+                            required
+                        >
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="INR">INR</option>
+                            <option value="JPY">JPY</option>
+                        </select>
+                    </div>
+                    <div className="flex flex-col mb-4">
+                        <label htmlFor="name" className="mb-1">
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="p-2 bg-gray-800 rounded-lg"
+                            required
+                        />
+                    </div>
+                    <div className="flex flex-col mb-4">
+                        <label htmlFor="email" className="mb-1">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="p-2 bg-gray-800 rounded-lg"
+                            required
+                        />
+                    </div>
+                    <div className="flex flex-col mb-4">
+                        <label htmlFor="cardNumber" className="mb-1">
+                            Card Number
+                        </label>
+                        <input
+                            type="text"
+                            id="cardNumber"
+                            value={cardNumber}
+                            onChange={(e) => setCardNumber(e.target.value)} />
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}

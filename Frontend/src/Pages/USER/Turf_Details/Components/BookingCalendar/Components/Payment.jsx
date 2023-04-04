@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useState } from "react";
 import { bookSlot } from "../../../../../../API/ServerRequests/User/UserApi";
+import { errorSwal } from "../../../../../../utils/Helpers/Swal";
 
 
 const Payment = ({ setModal, date, time }) => {

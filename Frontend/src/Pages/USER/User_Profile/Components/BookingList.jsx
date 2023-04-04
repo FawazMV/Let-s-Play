@@ -18,7 +18,7 @@ const BookingList = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody className="">
-                    {data.filter(booking => new Date(booking.bookDate).getDate() < new Date().getDate() - 1 || showAllBookings).map(booking => (
+                    {data.filter(booking => new Date().getDate()-1 > new Date(booking.bookDate).getDate() || showAllBookings).map(booking => (
                         <tr key={booking._id} className="hover:bg-gray-600 border-b border-opacity-60 border-gray-400 bg-gray-800">
                             <td className="px-6 py-4">#{booking._id}</td>
                             <td className="px-6 py-4">{booking.turf.courtName}</td>

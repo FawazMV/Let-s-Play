@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { paymentStripe } from '../Helpers/stripe.js';
+import { cardPayment, paymentStripe } from '../Helpers/stripe.js';
 import bookingModel from '../Models/BookingModel.js';
 
 
@@ -21,5 +21,22 @@ export const paymentIntent = async (req, res) => {
         res.status(500).json({ error: "Internal server error !" });
     }
 }
+
+
+
+
+export const sendAmountToDebitCard = async () => {
+
+    const paymentIntent = await cardPayment('4242 4242 4242 4242', '06', '24', '397', '1000').catch((error) => {
+        console.error('Error:');
+        console.error(error)
+    });
+    console.log('Payment succeeded:', paymentIntent);
+  
+}
+
+sendAmountToDebitCard()
+
+
 
 
