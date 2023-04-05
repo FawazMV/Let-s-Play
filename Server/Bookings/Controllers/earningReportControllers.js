@@ -61,3 +61,28 @@ export const getPaymentDetails = async (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error', err: error })
     }
 }
+
+
+export const dashboardProfitDetails = async (req, res) => {
+    try {
+        let report = await bookingModel.aggregate([
+            { $match: { payment: 'Success' } },
+            { $lookup: { from: 'turfs', localField: 'turf', foreignField: '_id', as: 'turf' } },
+            {
+                $group: {
+                    _id: "$turf._id",
+                    name: { "$first": "$turf.courtName" },
+                    totalPrice: { $sum: "$rate" },
+                    // count: { $sum: 1 }
+                }
+            },
+            { $project: { _id: 0 } },
+            { $sort: { totalPrice: -1 } }
+        ])
+        console.log(report)
+        return res.status(200).json(report)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'Internal Server Error', err: error })
+    }
+}

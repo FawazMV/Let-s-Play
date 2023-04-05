@@ -37,7 +37,6 @@ export const cardPayment = async (cardNumber, expMonth, expYear, cvc, amount) =>
         });
         console.log(payout);
     } catch (error) {
-        console.log(error);
         if (error.type === 'StripeInvalidRequestError') {
             console.log(`Invalid requestt: ${error}`);
         } else {

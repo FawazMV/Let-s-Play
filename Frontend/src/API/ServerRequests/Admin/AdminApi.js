@@ -55,6 +55,15 @@ export const getTurfsReport = async (token) => {
         const response = await axios.get('/all-booking-report', { headers: { Authorization: `Bearer ${token}` } })
         return response
     } catch (error) {
-        return error.response
+        return error?.response
+    }
+}
+
+export const dashboardProfitReport = async (token) => {
+    try {
+        const response = await axios.get('/dashboard-profit-details', { headers: { Authorization: `Bearer ${token}` } })
+        return response
+    } catch (error) {
+        return error?.response
     }
 }

@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
-import Chart from "./Components/Chart";
+import { dashboardProfitReport } from "../../../API/ServerRequests/Admin/AdminApi.js";
+import BarGraph from "./Components/BarGraph";
+import LineGraph from "./Components/LineGraph.jsx";
 
 export default function App() {
     const [data, setdata] = useState();
 
     useEffect(() => {
-        const fetchDatas = async () => {
-            const res = await fetch("https://api.coincap.io/v2/assets/?limit=20");
-            const data = await res.json();
-            console.log(data);
-            setdata(data?.data);
-        };
+
         fetchDatas();
     }, []);
 
+    const fetchDatas = async () => {
+        const data = await dashboardProfitReport('token');
+        console.log(data);
+        setdata(data?.data);
+    };
     return (
         <div className="pt-20">
             How to use Recharts with React
-            <Chart data={data} />
+            <div className="flex justify-between">
+                <BarGraph data={data} />
+                <LineGraph data={data} />
+            </div>
+
         </div>
     );
 }
