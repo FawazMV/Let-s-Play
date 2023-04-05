@@ -39,10 +39,10 @@ const TurfPorfile = () => {
     };
 
     return (
-        <div className="bg-slate-800 text-gray-300">
+        <div className="bg-slate-800 text-gray-800">
             <div className="container  mx-auto pt-28  p-4">
                 <div className="mb-4 flex justify-center items-center">
-                    <h1 className="text-4xl text-gray-700 font-semibold">{details?.courtName}</h1>
+                    <h1 className="text-4xl text-gray-200 font-semibold">{details?.courtName}</h1>
                 </div>
                 <DefaultDetails {...details} />
                 <div className="mt-4">

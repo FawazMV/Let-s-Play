@@ -18,7 +18,7 @@ const BookingList = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody className="">
-                    {data.filter(booking => new Date().getDate()-1 < new Date(booking.bookDate).getDate() || showAllBookings).map(booking => (
+                    {data.filter(booking => new Date() < new Date(booking.bookDate) || showAllBookings).map(booking => (
                         <tr key={booking._id} className="hover:bg-gray-600 border-b border-opacity-60 border-gray-400 bg-gray-800">
                             <td className="px-6 py-4">#{booking._id}</td>
                             <td className="px-6 py-4">{booking.turf.courtName}</td>
@@ -39,15 +39,17 @@ const BookingList = ({ data }) => {
                     ))}
                 </tbody>
             </table>
-            <div className="flex items-center justify-center sm:px-20 sm:justify-end text-gray-600 text-xs">
-                <span className="mr-1">
-                    <svg fill="currentColor" className="w-5 h-5" viewBox="0 0 16 16">
-                        <path fillRule="evenodd" d={!showAllBookings ? "M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" :
-                            "M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"} />
+            <div className="flex  justify-center sm:px-20 lg:justify-end">
+                <div className="cursor-pointer  flex items-center text-gray-600 text-xs">
+                    <span className="mr-1">
+                        <svg fill="currentColor" className="w-5 h-5" viewBox="0 0 16 16">
+                            <path fillRule="evenodd" d={!showAllBookings ? "M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" :
+                                "M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"} />
 
-                    </svg>
-                </span>
-                <button className="mr-5 cursor-pointer my-2" onClick={toggleShowAllBookings}>{showAllBookings ? 'Hide previous bookings' : 'Previous bookings'}</button>
+                        </svg>
+                    </span>
+                    <button className="mr-5 my-2" onClick={toggleShowAllBookings}>{showAllBookings ? 'Hide previous bookings' : 'Previous bookings'}</button>
+                </div>
             </div>
         </div>
     )
