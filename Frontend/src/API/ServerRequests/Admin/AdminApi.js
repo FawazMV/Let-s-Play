@@ -59,7 +59,7 @@ export const getTurfsReport = async (token) => {
     }
 }
 
-export const dashboardProfitReport = async (token) => {
+export const dashboardGraphDetails = async (token) => {
     try {
         const response = await axios.get('/dashboard-profit-details', { headers: { Authorization: `Bearer ${token}` } })
         return response

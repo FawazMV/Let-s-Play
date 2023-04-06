@@ -1,5 +1,5 @@
 import express from 'express';
-import { dashboardProfitDetails, getReports } from './Controllers/bookingControllers.js';
+import { dashboardGraphDetails, getReports } from './Controllers/bookingControllers.js';
 import { login } from './Controllers/login.js';
 import { getTurfRequests, reqAccept, getTurfsAccepted, reqCancel, ManageTurf } from './Controllers/TurfControllers.js';
 import { getUsers } from './Controllers/UserControllers.js';
@@ -30,6 +30,6 @@ router.get('/show-users', getUsers)
 
 router.get('/all-booking-report', getReports)
 
-router.get('/dashboard-profit-details', dashboardProfitDetails)
+router.get('/dashboard-profit-details', dashboardGraphDetails)
 
 export default router   

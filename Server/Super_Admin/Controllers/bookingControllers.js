@@ -10,7 +10,7 @@ export const getReports = async (req, res, next) => {
     }
 }
 
-export const dashboardProfitDetails = async (req, res) => {
+export const dashboardGraphDetails = async (req, res) => {
     try {
         const response = await axios.get('/dashboard-profit-details')
         return res.status(200).json(response.data)

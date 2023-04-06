@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { monthwiseReportCreation } from "../Helpers/helpers.js";
 import bookingModel from "../Models/BookingModel.js";
 import paymentModel from "../Models/PaymentDetails.js";
 
@@ -63,24 +64,20 @@ export const getPaymentDetails = async (req, res) => {
 }
 
 
-export const dashboardProfitDetails = async (req, res) => {
+export const dashboardGraphDetails = async (req, res) => {
     try {
-        let report = await bookingModel.aggregate([
+        const y = new Date().getFullYear();
+        const firstDay = new Date(y, 0, 1);
+        let bookings = await bookingModel.find({ bookDate: { $gte: firstDay }, payment: 'Success' }).select('bookDate rate').lean()
+        const monthlyReport = monthwiseReportCreation(bookings)
+        let turfWiseReport = await bookingModel.aggregate([
             { $match: { payment: 'Success' } },
             { $lookup: { from: 'turfs', localField: 'turf', foreignField: '_id', as: 'turf' } },
-            {
-                $group: {
-                    _id: "$turf._id",
-                    name: { "$first": "$turf.courtName" },
-                    totalPrice: { $sum: "$rate" },
-                    // count: { $sum: 1 }
-                }
-            },
+            { $group: { _id: "$turf._id", name: { "$first": "$turf.courtName" }, totalPrice: { $sum: "$rate" } } },
             { $project: { _id: 0 } },
             { $sort: { totalPrice: -1 } }
         ])
-        console.log(report)
-        return res.status(200).json(report)
+        return res.status(200).json({ turfWiseReport, monthlyReport })
     } catch (error) {
         console.log(error)
         return res.status(500).json({ error: 'Internal Server Error', err: error })
