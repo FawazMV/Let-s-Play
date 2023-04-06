@@ -48,7 +48,7 @@ export const ManageTurf = (req, res, next) => {
 
 
 export const turfDetails = (req, res, next) => {
-    turfmodel.findById(req.user.id, { rating: 0, block: 0, password: 0, reviews: 0, request: 0, __v:0 }).then(data => res.status(200).json(data))
+    turfmodel.findById(req.user.id, { rating: 0, block: 0, password: 0, reviews: 0, request: 0, __v: 0 }).then(data => res.status(200).json(data))
         .catch(err => res.status(500).json(err))
 }
 
@@ -74,4 +74,10 @@ export const updateRating = async (req, res, next) => {
     catch (err) {
         return res.status(500).json({ message: 'Internal Server Error' })
     }
+}
+
+export const turfCount = async (req, res) => {
+    const data = await turfmodel.find({ request: true, block: false }).count().catch(err => res.status(500).json(err))
+    console.log(data)
+    res.status(200).json(data)
 }

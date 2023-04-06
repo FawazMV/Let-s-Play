@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import Router from './Routes.js'
+import Router from './Routes/Routes.js'
+import dashboard from './Routes/DashboardRoutes.js'
 import mongoose from 'mongoose'
 import cors from 'cors'
 
@@ -16,4 +17,6 @@ mongoose.connect(DATABASE_URL, () => console.log('Database Connected'))
 
 app.listen(7171, () => console.log('Connected to server 7171'))
 
-app.use('/', Router) 
+app.use('/', Router)
+
+app.use('/dashboard', dashboard) 

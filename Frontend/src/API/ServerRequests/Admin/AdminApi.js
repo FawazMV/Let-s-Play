@@ -59,9 +59,35 @@ export const getTurfsReport = async (token) => {
     }
 }
 
+
+//Admin dashboard
+
 export const dashboardGraphDetails = async (token) => {
     try {
-        const response = await axios.get('/dashboard-profit-details', { headers: { Authorization: `Bearer ${token}` } })
+        const response = await axios.get('/dashboard/graph-details', { headers: { Authorization: `Bearer ${token}` } })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}
+
+
+export const usersCount = async (token) => {
+    try {
+        const response = await axios.get('/dashboard/get-user-count', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}
+
+export const turfsCount = async (token) => {
+    try {
+        const response = await axios.get('/dashboard/get-turf-count', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
         return response
     } catch (error) {
         return error?.response

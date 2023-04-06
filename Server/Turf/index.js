@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import Router from './Routes.js'
+import Router from './Routes/Routes.js'
+import adminRequests from './Routes/AdminRequests.js'
 import mongoose from 'mongoose'
 import cors from 'cors'
 
@@ -17,6 +18,8 @@ mongoose.connect(DATABASE_URL, () => console.log('Database Connected'))
 app.listen(8888, () => console.log('Connected to server 8888'))
 
 app.use('/', Router)
+
+app.use('/turf-admin', adminRequests)
 
 app.use((err, req, res, next) => {
     if (err.code === 11000) {

@@ -38,7 +38,7 @@ router.get('/user-bookings', userBookings)
 //superAdminrequests
 router.get('/all-reports', allReports)
 
-router.get('/dashboard-profit-details', dashboardGraphDetails)
+router.get('/dashboard-graph-details', dashboardGraphDetails)
 
 
 export default router  
