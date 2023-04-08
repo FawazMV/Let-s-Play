@@ -46,7 +46,7 @@ export const allReports = async (req, res, next) => {
     }
 }
 
-
+//turf dashboard
 
 export const getPaymentDetails = async (req, res) => {
     try {
@@ -63,6 +63,33 @@ export const getPaymentDetails = async (req, res) => {
     }
 }
 
+
+export const getTurfGraphData = async (req, res) => {
+    try {
+        const y = new Date().getFullYear();
+        const firstDay = new Date(y, 0, 1);
+        let bookings = await bookingModel.find({ bookDate: { $gte: firstDay }, payment: 'Success', turf: new mongoose.Types.ObjectId(req.query.turf) }).select('bookDate rate').lean()
+        const monthlyReport = monthwiseReportCreation(bookings)
+        return res.status(200).json({ monthlyReport })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'Internal Server Error', err: error })
+    }
+}
+
+export const getTurfBookingCount = async (req, res) => {
+    try {
+        let total = await bookingModel.find({ payment: 'Success', turf: new mongoose.Types.ObjectId(req.query.turf) }).count()
+        let today = await bookingModel.find({ payment: 'Success', turf: new mongoose.Types.ObjectId(req.query.turf), bookDate:  Date.now() }).count()
+        console.log(today, total)
+        return res.status(200).json({ total, today })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'Internal Server Error', err: error })
+    }
+}
+
+//superadmin
 
 export const dashboardGraphDetails = async (req, res) => {
     try {
@@ -82,4 +109,13 @@ export const dashboardGraphDetails = async (req, res) => {
         console.log(error)
         return res.status(500).json({ error: 'Internal Server Error', err: error })
     }
+}
+
+export const getAdminProfit = async (req, res) => {
+    const result = await bookingModel.aggregate([
+        { $match: { payment: 'Success' } },
+        { $group: { _id: null, total: { $sum: "$rate" } } },
+        { $project: { _id: 0, total: 1 } }
+    ])
+    return res.status(200).json({ profit: result[0]?.total * 5 / 100 })
 }

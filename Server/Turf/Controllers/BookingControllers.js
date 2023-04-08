@@ -17,6 +17,17 @@ export const earningReport = async (req, res) => {
     }
     catch (error) {
         console.warn(error)
-        return res.status(500).json({ message: 'Internal Server Error' })
+        return res.status(500).json({ error: 'Internal Server Error', err: error })
+    }
+}
+
+export const getBookedSlots = async (req, res) => {
+    try {
+        const response = await axios.get('/booked-slots', { params: { date: req.query.date, id: req.query.id } })
+        if (response.status === 200) return res.status(200).json(response.data)
+    }
+    catch (error) {
+        console.warn(error)
+        return res.status(500).json({ error: 'Internal Server Error', err: error })
     }
 }

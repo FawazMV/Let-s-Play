@@ -12,10 +12,17 @@ import otherRoutes from './Routes/otherRoutes.js'
 
 dotenv.config()
 const app = express()
-app.use(express.json(), cors());
+app.use(express.json());
 
+const corsOptions = {
+    origin: ['http://localhost:7171', 'http://localhost:1234'],
+    methods: 'GET,POST,PATCH,PUT,DELETE',
+    preflightContinue: true,
+    optionsSuccessStatus: 200,
+    credentials: true
+};
 
-
+app.use(cors(corsOptions));
 
 app.use('/', authRoutes)
 

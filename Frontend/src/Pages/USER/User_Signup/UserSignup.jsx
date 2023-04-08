@@ -13,12 +13,12 @@ const UserSignup = () => {
 
     const otpCallApi = async (data) => {
         const result = await otpCall({ mobile: data.mobile, email: data.email })
-        if (result.status === 200) {
+        if (result?.status === 200) {
             setOtpPage(true)
             setFormData(data)
-        } else if (result.status === 409) {
-            setApiError(result.data.message)
-        } else if (result.status === 500) errorSwal(result.data.error)
+        } else if (result?.status === 409) {
+            setApiError(result?.data?.message)
+        } else if (result?.status === 500) errorSwal(result?.data?.error)
 
 
     }

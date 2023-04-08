@@ -1,9 +1,8 @@
 import sendMail from "./nodemailer.js";
 
 export const successEmail = (data) => {
-    const { _id, bookDate, time } = data;
+    const { _id, bookDate, time,email, username } = data;
     const { courtName } = data.turf;
-    const { email, username } = data.user;
 
     const text = `Dear ${username},
 

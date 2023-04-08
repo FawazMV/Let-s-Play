@@ -93,3 +93,14 @@ export const turfsCount = async (token) => {
         return error?.response
     }
 }
+
+export const profitCalculate = async (token) => {
+    try {
+        const response = await axios.get('/dashboard/get-profit', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}

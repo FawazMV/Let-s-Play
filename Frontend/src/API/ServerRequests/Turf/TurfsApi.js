@@ -81,3 +81,47 @@ export const getPaymentDetails = async (token) => {
         return error?.response
     }
 }
+
+export const getTurfGraphData = async (token) => {
+    try {
+        const response = await axios.get('/turf-graph-data', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}
+
+export const getTurfBookingCount = async (token) => {
+    try {
+        const response = await axios.get('/turf-bookings-count', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}
+
+///booked slots
+
+export const getBookedSlots = async (date, id) => {
+    try {
+        const response = await axios.get('/booked-slots', { params: { date, id } })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}
+
+//reviews
+
+export const getTurfView = async (id) => {
+    try {
+        const response = await axios.get('/get-review', { params: { id } })
+        return response
+    } catch (error) {
+        return error?.response
+    }
+}

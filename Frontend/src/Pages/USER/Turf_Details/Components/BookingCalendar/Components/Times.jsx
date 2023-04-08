@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getBookedSlots } from "../../../../../../API/ServerRequests/Bookings/bookingApi";
+import { getBookedSlots } from "../../../../../../API/ServerRequests/Turf/TurfsApi";
 import { getTimeSlot } from "../../../../../../utils/Helpers/functions";
 import Booked from "./Booked";
 import BookNow from "./BookNow";

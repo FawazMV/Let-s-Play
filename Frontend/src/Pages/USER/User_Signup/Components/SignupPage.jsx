@@ -26,7 +26,7 @@ const SignupPage = ({ submit, apiError, otpPage, modal, otpErr, otpSubmit }) => 
         <>
             {otpPage ? <OtpPage otpSubmit={otpSubmit} number={formData.mobile} modal={modal} otpErr={otpErr} /> : ''}
             <div className='absolute z-[-5] bg-gray-900 opacity-95 left-0 top-0 w-full min-h-screen ' />
-            <div className='absolute z-[-1] flex justify-center w-full h-screen items-center'>
+            <div className='absolute z-[-1] grid place-items-center w-full h-screen lg:pt-14 '>
                 <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100">
                     <div className="mb-8 text-center">
                         <h1 className="my-3 text-4xl font-bold">Sign Up</h1>

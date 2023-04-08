@@ -31,7 +31,6 @@ export const registerUser = async (req, res, next) => {
     }
     catch (err) {
         next(err);
-        // return res.status(500).json({ error: "Internal Server Error !" })
     }
 }
 

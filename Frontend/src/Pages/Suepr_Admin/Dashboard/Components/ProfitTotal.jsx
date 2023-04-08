@@ -1,15 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { profitCalculate } from "../../../../API/ServerRequests/Admin/AdminApi"
 
 const ProfitTotal = () => {
-    const [count, setCount] = useState('0')
+    const [value, setValue] = useState('0')
     useEffect(() => {
-        getTurfsCounts()
+        getprofitCalculate()
     }, [])
 
-    const getTurfsCounts = async () => {
-        // const response = await turfsCount('token')
-        // if (response.status === 200) setCount(response.data)
+    const getprofitCalculate = async () => {
+        const response = await profitCalculate('token')
+        if (response?.status === 200) {
+            if (response?.data?.profit) setValue(response?.data?.profit)
+        }
     }
     return (
         <div className=" flex flex-col bg-gray-900 p-2 rounded-xl">
@@ -21,7 +24,7 @@ const ProfitTotal = () => {
                     </svg>
                 </div>
                 <div className="flex flex-col justify-center items-center align-middle">
-                    <p className="text-[33px] font-semibold leading-none">₹ {count}</p>
+                    <p className="text-[33px] font-semibold leading-none">₹ {value}</p>
                     <p className="capitalize text-sm">Profit Earned</p>
                 </div>
             </div>

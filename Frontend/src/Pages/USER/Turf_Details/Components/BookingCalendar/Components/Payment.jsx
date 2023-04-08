@@ -1,6 +1,6 @@
 
 import { loadStripe } from "@stripe/stripe-js";
-import { payementAction } from "../../../../../../API/ServerRequests/Bookings/bookingApi";
+import { payementAction } from "../../../../../../API/ServerRequests/User/UserApi";
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useState } from "react";
@@ -12,8 +12,8 @@ const Payment = ({ setModal, date, time }) => {
     const token = useSelector((store) => store?.auth?.token);
     const { id } = useParams()
     const stripePromise = loadStripe(`${process.env.REACT_APP_YOUR_STRIPE_PUBLIC_KEY}`);
-    const [load, setLoad] = useState(false) 
-    const navigate = useNavigate()  
+    const [load, setLoad] = useState(false)
+    const navigate = useNavigate()
 
     const payment = async () => {
         setLoad(true)
@@ -21,16 +21,17 @@ const Payment = ({ setModal, date, time }) => {
             const response = await bookSlot({ date, time, turf: id }, token)
             if (response?.status === 200) {
                 const stripe = await stripePromise;
-                const result = await payementAction(response?.data?.booking_id);
+                const result = await payementAction(token,response?.data?.booking_id);
                 if (result?.status === 200) {
                     setModal(false)
-                    await stripe.redirectToCheckout({ sessionId: result.data.response });
+                    console.log(result.data)
+                    await stripe.redirectToCheckout({ sessionId: result.data });
                 } else errorSwal()
             } else errorSwal()
         } else navigate('/login')
     }
     return (
-        <button disablloaded={load} onClick={payment} className={`flex justify-center items-center rounded-sm shadow-sm bg-violet-500 ${load ? 'cursor-not-allowed py-0 px-4' : 'py-2 px-6  hover:bg-violet-400 transition'}  text-gray-50 font-bold`}>
+        <button disabled={load} onClick={payment} className={`flex justify-center items-center rounded-sm shadow-sm bg-violet-500 ${load ? 'cursor-not-allowed py-0 px-4' : 'py-2 px-6  hover:bg-violet-400 transition'}  text-gray-50 font-bold`}>
             Proceed to Payment
             {load &&
                 <svg aria-hidden="true" className="w-6 h-4 ml-2 text-gray-200 animate-spin fill-violet-400 " viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

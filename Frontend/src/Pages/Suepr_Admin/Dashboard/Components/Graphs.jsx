@@ -1,6 +1,7 @@
 import { dashboardGraphDetails } from "../../../../API/ServerRequests/Admin/AdminApi";
-import { LineGraph } from '../../../Components/LineGraph'
-import { BarGraph } from '../../../Components/BarGraph'
+import LineGraph from '../../../Components/LineGraph'
+import BarGraph from '../../../Components/BarGraph'
+import { useEffect, useState } from "react";
 
 const Graphs = () => {
     const [turfGraphData, setTurfGraphData] = useState([]);

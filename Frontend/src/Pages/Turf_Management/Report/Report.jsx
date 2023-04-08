@@ -51,7 +51,7 @@ const Report = () => {
                                     {report.totalPrice}
                                 </td>
                                 <td className="px-12 py-4">
-                                    {report.totalPrice - (report.totalPrice * 3 / 100)}
+                                    ₹ {report.totalPrice - (report.totalPrice * 5 / 100)}
                                 </td>
                             </tr>
                         ))}

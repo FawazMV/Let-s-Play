@@ -3,7 +3,7 @@ import { Axiosuser } from "../../Axiosinstance"
 export const registerUser = async (data) => {
     try {
         const response = await Axiosuser.post('/register-user', data)
-        return
+        return response
     }
     catch (error) {
         return error?.response

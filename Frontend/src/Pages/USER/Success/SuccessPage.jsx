@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
-import { bookingSuccess } from "../../../API/ServerRequests/Bookings/bookingApi.js"
+import { bookingSuccess } from "../../../API/ServerRequests/User/UserApi"
 
 const SuccessPage = () => {
     const [details, setDetails] = useState({})
     const { id } = useParams()
+    const token = useSelector((store)=>store?.auth?.token)
     useEffect(() => {
-        updateSuccess()
-    }, [])
-
+        token && updateSuccess()
+    }, [token])
     const updateSuccess = async () => {
-        const result = await bookingSuccess(id)
+        const result = await bookingSuccess(token, id)
         if (result?.status === 200) {
-            console.log(result.data)
-            setDetails(result.data)
+            setDetails(result?.data)
         }
     }
     return (

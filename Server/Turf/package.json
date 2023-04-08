@@ -20,7 +20,8 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "start": "nodemon"
+   "start": "node index.js",
+  "dev": "nodemon index.js"
   },
   "author": "Muhammed Fawaz MV",
   "license": "ISC"

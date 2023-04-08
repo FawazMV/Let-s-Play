@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { bookingFailed } from "../../../API/ServerRequests/Bookings/bookingApi"
+import { bookingFailed } from "../../../API/ServerRequests/User/UserApi"
 import { errorSwal } from "../../../utils/Helpers/Swal"
 
 const Failed = () => {

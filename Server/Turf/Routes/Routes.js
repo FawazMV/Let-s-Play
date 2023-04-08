@@ -1,8 +1,9 @@
 import express from 'express'
 import { otpResend, otpValidation, registration, SendOtp, login } from '../Controllers/Authcontroller.js'
-import { bookedTurfs, earningReport } from '../Controllers/BookingControllers.js'
-import { getpaymentDetails } from '../Controllers/DashboardControllers.js'
-import { getAllTurfs, getLocationWiseTurf, turfDetails, updateTurfDetails, turfDetailsUser, updateRating } from '../Controllers/TurfControllers.js'
+import { bookedTurfs, earningReport, getBookedSlots } from '../Controllers/BookingControllers.js'
+import { getpaymentDetails, getTurfGraphData, getTurfBookingCount } from '../Controllers/DashboardControllers.js'
+import { updateRating, getReviews } from '../Controllers/ReviewControllers.js'
+import { getAllTurfs, getLocationWiseTurf, turfDetails, updateTurfDetails, turfDetailsUser } from '../Controllers/TurfControllers.js'
 import { authVeify } from '../Helpers/JWT.js'
 import upload from '../Helpers/multer.js'
 const router = express.Router()
@@ -43,7 +44,10 @@ router.get('/booked-details', authVeify, bookedTurfs)
 
 router.get('/earning-report', authVeify, earningReport)
 
-//reviewupdatae
+router.get('/booked-slots', getBookedSlots)
+
+//reviews
+router.get('/get-review', getReviews)
 
 router.patch('/rating-update', updateRating)
 
@@ -51,5 +55,11 @@ router.patch('/rating-update', updateRating)
 // dashboard functions
 
 router.get('/profit-details', authVeify, getpaymentDetails)
+
+router.get('/turf-graph-data', authVeify, getTurfGraphData)
+
+router.get('/turf-bookings-count', authVeify, getTurfBookingCount)
+
+//
 
 export default router 
