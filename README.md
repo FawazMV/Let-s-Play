@@ -2,7 +2,7 @@
 An online platform for owners to add turfs to a database and users to search, view, and book turfs for specific time slots. The application is built using the MERN stack and utilizes various technologies.
 
 ## Frontend
-The project is deployed at https://let-s-play.onrender.com
+The project is deployed at https://master.des0fpb6pp73d.amplifyapp.com/
 
 ### Features
 * User/Turf-Owner registration and login
